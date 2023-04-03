@@ -12,8 +12,8 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 type ThemeChangerProps = {
-  onValueChange: (value: string) => void;
-  defaultValue: string;
+  onValueChange: (value: any) => void;
+  defaultValue?: string;
 };
 
 const themes = {
@@ -44,29 +44,29 @@ const themes = {
   },
 };
 
-const ThemeChanger = () => {
-  const [theme, setTheme] = useState(themes.light);
+const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
+  // const [theme, setTheme] = useState(themes.light);
   const [themesVisible, setThemesVisible] = useState(false);
 
   const HandleValue = (value: any) => {
     switch (value) {
       case 'light':
-        setTheme(themes.light);
+        onValueChange(themes.light);
         break;
       case 'dark':
-        setTheme(themes.dark);
+        onValueChange(themes.dark);
         break;
       case 'green':
-        setTheme(themes.green);
+        onValueChange(themes.green);
         break;
       case 'pink':
-        setTheme(themes.pink);
+        onValueChange(themes.pink);
         break;
       case 'purple':
-        setTheme(themes.purple);
+        onValueChange(themes.purple);
         break;
       default:
-        setTheme(themes.light);
+        onValueChange(themes.light);
         break;
     }
   };
