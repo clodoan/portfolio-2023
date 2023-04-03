@@ -8,10 +8,13 @@ import {
 } from '@/styles/colors';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { motion } from 'framer-motion';
-import type { AppProps } from 'next/app';
 import { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 import styled, { css } from 'styled-components';
+
+type ThemeChangerProps = {
+  onValueChange: (value: string) => void;
+  defaultValue: string;
+};
 
 const themes = {
   light: {
@@ -41,7 +44,7 @@ const themes = {
   },
 };
 
-export default function App({ Component, pageProps }: AppProps) {
+const ThemeChanger = () => {
   const [theme, setTheme] = useState(themes.light);
   const [themesVisible, setThemesVisible] = useState(false);
 
@@ -67,10 +70,8 @@ export default function App({ Component, pageProps }: AppProps) {
         break;
     }
   };
-
   return (
-    <ThemeProvider theme={theme.key}>
-      <GlobalStyle />
+    <>
       <ThemesTrigger onClick={() => setThemesVisible(!themesVisible)}>
         {themesVisible ? '🎨' : '☕'}
       </ThemesTrigger>
@@ -102,10 +103,9 @@ export default function App({ Component, pageProps }: AppProps) {
           </ThemeButton>
         </ThemeSelector>
       )}
-      <Component {...pageProps} />
-    </ThemeProvider>
+    </>
   );
-}
+};
 
 const ThemeSelector = styled(ToggleGroup.Root)`
   display: flex;
@@ -174,3 +174,5 @@ const ThemeButton = styled(ToggleGroup.Item)`
       }
    `}
 `;
+
+export default ThemeChanger;

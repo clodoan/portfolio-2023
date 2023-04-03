@@ -8,11 +8,13 @@ export const lightTheme = {
     primary: '#f3f4f6',
     secondary: '#e5e7eb',
     tertiary: '#d1d5db',
+    transparent: 'transparent',
   },
   border: {
     primary: '#e5e7eb',
     secondary: '#d1d5db',
     tertiary: '#9ca3af',
+    transparent: 'transparent',
   },
   button: {
     primary: '#111827',
@@ -46,11 +48,13 @@ export const darkTheme = {
     primary: '#111827',
     secondary: '#1f2937',
     tertiary: '#374151',
+    transparent: 'transparent',
   },
   border: {
     primary: '#1f2937',
     secondary: '#374151',
     tertiary: '#6b7280',
+    transparent: 'transparent',
   },
   button: {
     primary: '#f3f4f6',
@@ -84,11 +88,13 @@ export const greenTheme = {
     primary: '#d1f2eb',
     secondary: '#a3e4d7',
     tertiary: '#73d0c3',
+    transparent: 'transparent',
   },
   border: {
     primary: '#a3e4d7',
     secondary: '#73d0c3',
     tertiary: '#40b6ac',
+    transparent: 'transparent',
   },
   button: {
     primary: '#011e07',
@@ -122,11 +128,13 @@ export const pinkTheme = {
     primary: '#f8d7da',
     secondary: '#f5b0ba',
     tertiary: '#f48b97',
+    transparent: 'transparent',
   },
   border: {
     primary: '#f5b0ba',
     secondary: '#f48b97',
     tertiary: '#f06575',
+    transparent: 'transparent',
   },
   button: {
     primary: '#2d0c2f',
@@ -160,11 +168,13 @@ export const purpleTheme = {
     primary: '#e8d7f8',
     secondary: '#d4b0f5',
     tertiary: '#c18bf2',
+    transparent: 'transparent',
   },
   border: {
     primary: '#d4b0f5',
     secondary: '#c18bf2',
     tertiary: '#a765f0',
+    transparent: 'transparent',
   },
   button: {
     primary: '#1d0c2f',
