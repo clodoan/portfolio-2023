@@ -1,28 +1,32 @@
-import styled from 'styled-components'
-import content from '../content/content.json'
-import { css } from 'styled-components'
+import Typography from '@/components/typography';
+import { borderRadius, spacing } from '@/styles';
+import styled from 'styled-components';
+import { css } from 'styled-components';
+
+import content from '../content/content.json';
 
 export default function Home() {
   return (
     <Container>
       <Card>
-        <h1>{content.home.title}</h1>
-        <h2>{content.home.subtitle}</h2>
-        <h3>
-          Labore laborum culpa incididunt irure dolore consequat nulla id quis
-          reprehenderit dolore id proident.
-        </h3>
-        <p>
-          Incididunt occaecat mollit incididunt eiusmod adipisicing qui laboris
-          ullamco aliqua velit. Deserunt incididunt veniam culpa. Dolore
-          pariatur aliqua commodo commodo enim nulla aliquip consequat consequat
-          anim dolor elit eiusmod cupidatat. Consequat voluptate proident
-          ullamco consequat sunt ut. Pariatur id eu qui in consequat minim ad ex
-          amet enim occaecat.
-        </p>
+        <Typography variant="heading-1" color="primary" as="h1">
+          Heading 1
+        </Typography>
+        <Typography variant="heading-2" color="secondary">
+          Heading 2
+        </Typography>
+        <Typography variant="heading-3" color="tertiary">
+          Heading 3
+        </Typography>
+        <Typography variant="label-1">Label 1 </Typography>
+        <Typography variant="label-2">Label 2 </Typography>
+        <Typography variant="label-3">Label 3 </Typography>
+        <Typography variant="body-1">Body 1 </Typography>
+        <Typography variant="body-2">Body 2 </Typography>
+        <Typography variant="body-3">Body 3 </Typography>
       </Card>
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -35,20 +39,19 @@ const Container = styled.div`
     align-items: center;
     background-color: ${theme.background.primary};
   `}
-`
+`;
 
 const Card = styled.div`
   ${({ theme }) => css`
     width: 80%;
-    background-color: ${theme.background.secondary};
+    background-color: ${theme.background.primary};
     border: 1px solid ${theme.border.primary};
-    box-shadow: ${theme.shadow.secondary};
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
+    border-radius: ${borderRadius.medium};
+    padding: ${spacing[4]};
+    margin: ${spacing[4]};
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
   `}
-`
+`;

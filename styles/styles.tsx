@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
-import { css } from 'styled-components'
-import { lightTheme, darkTheme } from './colors'
-import { typography, typographyBase } from './typography'
+import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 
-type ThemeType = typeof lightTheme | typeof darkTheme
+import { darkTheme, lightTheme } from './colors';
+
+type ThemeType = typeof lightTheme | typeof darkTheme;
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     ${({ theme }) => css`
@@ -21,35 +21,5 @@ export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
         margin: 0;
         overflow-x: hidden;
       }
-      h1 {
-        font-family: ${typographyBase.fontFamily.heading};
-        font-weight: ${typographyBase.fontWeight.heading};
-        font-size: ${typographyBase.fontSize[5]};
-        line-height: ${typographyBase.lineHeight[5]};
-      }
-      h2 {
-        font-family: ${typographyBase.fontFamily.heading};
-        font-weight: ${typographyBase.fontWeight.heading.bold};
-        font-size: ${typographyBase.fontSize[4]};
-        line-height: ${typographyBase.lineHeight[4]};
-      }
-      h3 {
-        font-family: ${typographyBase.fontFamily.heading};
-        font-weight: ${typographyBase.fontWeight.heading.bold};
-        font-size: ${typographyBase.fontSize[3]};
-        line-height: ${typographyBase.lineHeight[3]};
-      }
-      h4 {
-        font-family: ${typographyBase.fontFamily.heading};
-        font-weight: ${typographyBase.fontWeight.heading.bold};
-        font-size: ${typographyBase.fontSize[2]};
-        line-height: ${typographyBase.lineHeight[2]};
-      }
-      p {
-        font-family: ${typographyBase.fontFamily.body};
-        font-weight: ${typographyBase.fontWeight.body.regular};
-        font-size: ${typographyBase.fontSize[2]};
-        line-height: ${typographyBase.lineHeight[2]};
-      }
     `}
-`
+`;
