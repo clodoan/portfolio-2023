@@ -1,14 +1,14 @@
-import { Inter, Source_Serif_Pro } from 'next/font/google'
+import { Inter, Source_Serif_Pro } from 'next/font/google';
 
 const inter = Inter({
   subsets: ['latin'],
-})
+});
 const source_serif_pro = Source_Serif_Pro({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
-})
+});
 
-const FACTOR = 1.25
+const FACTOR = 1.25;
 
 export const typographyBase = {
   fontFamily: {
@@ -41,16 +41,16 @@ export const typographyBase = {
     10: '4.5rem',
   },
   lineHeight: {
-    0: `.75rem * ${FACTOR}`,
-    1: `.875rem * ${FACTOR}`,
-    2: `1rem * ${FACTOR}`,
-    3: `1.125rem * ${FACTOR}`,
-    4: `1.25rem * ${FACTOR}`,
-    5: `1.5rem * ${FACTOR}`,
-    6: `1.875rem * ${FACTOR}`,
-    7: `2.25rem * ${FACTOR}`,
-    8: `3rem * ${FACTOR}`,
-    9: `3.75rem * ${FACTOR}`,
-    10: `4.5rem * ${FACTOR}`,
+    0: `calc(.75rem * ${FACTOR})`,
+    1: `calc(.875rem * ${FACTOR})`,
+    2: `calc(1rem * ${FACTOR})`,
+    3: `calc(1.125rem * ${FACTOR})`,
+    4: `calc(1.25rem * ${FACTOR})`,
+    5: `calc(1.5rem * ${FACTOR})`,
+    6: `calc(1.875rem * ${FACTOR})`,
+    7: `calc(2.25rem * ${FACTOR})`,
+    8: `calc(3rem * ${FACTOR})`,
+    9: `calc(3.75rem * ${FACTOR})`,
+    10: `calc(4.5rem * ${FACTOR})`,
   },
-}
+};
