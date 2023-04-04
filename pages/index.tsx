@@ -1,3 +1,4 @@
+import SEO from '@/components/seo';
 import Typography from '@/components/typography';
 import { borderRadius, spacing } from '@/styles';
 import Link from 'next/link';
@@ -8,26 +9,29 @@ import content from '../content/content.json';
 
 export default function Home() {
   return (
-    <Container>
-      <Card>
-        <Typography variant="heading-1" color="primary" as="h1">
-          {content.home.title}
-        </Typography>
-        <Subtitle>
-          <Typography variant="heading-2" color="secondary">
-            {content.home.subtitle}
+    <>
+      <SEO />
+      <Container>
+        <Card>
+          <Typography variant="heading-1" color="primary" as="h1">
+            {content.home.title}
           </Typography>
-          <Link href="/onefootprint.com" target="_blank">
+          <Subtitle>
             <Typography variant="heading-2" color="secondary">
-              {content.home.cta}
+              {content.home.subtitle}
             </Typography>
-          </Link>
-        </Subtitle>
-        <Typography variant="body-2" color="secondary">
-          {content.home.description}
-        </Typography>
-      </Card>
-    </Container>
+            <Link href="/onefootprint.com" target="_blank">
+              <Typography variant="heading-2" color="secondary">
+                {content.home.cta}
+              </Typography>
+            </Link>
+          </Subtitle>
+          <Typography variant="body-2" color="secondary">
+            {content.home.description}
+          </Typography>
+        </Card>
+      </Container>
+    </>
   );
 }
 
