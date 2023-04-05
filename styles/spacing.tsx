@@ -26,7 +26,6 @@ export const borderRadius = {
   none: '0',
   small: '4px',
   medium: '6px',
-  large: '8px',
-  xlarge: '12px',
+  large: '12px',
   full: '500px',
 };

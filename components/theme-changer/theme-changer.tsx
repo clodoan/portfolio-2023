@@ -14,6 +14,7 @@ import styled, { css } from 'styled-components';
 
 type ThemeChangerProps = {
   onValueChange: (value: any) => void;
+  defaultTheme?: string;
 };
 
 const themes = {
@@ -44,8 +45,8 @@ const themes = {
   },
 };
 
-const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
-  const [themesVisible, setThemesVisible] = useState(false);
+const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
+  const [themesVisible, setThemesVisible] = useState(true);
   const [storedTheme, setStoredTheme] = useState<string | null>(null);
 
   const HandleValue = (value: any) => {
@@ -108,7 +109,7 @@ const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
               type="single"
               aria-label="theme-selection"
               onValueChange={(value) => HandleValue(value)}
-              defaultValue={storedTheme ? storedTheme : themes.light.name}
+              defaultValue={storedTheme ? storedTheme : defaultTheme}
             >
               <ThemeButton
                 value={themes.light.name}
@@ -156,7 +157,8 @@ const Wrapper = styled(motion.span)`
     justify-content: center;
     align-items: center;
     border-radius: ${borderRadius.full};
-    border: 1px solid ${theme.border.secondary};
+    border: 1px solid ${theme.border.primary};
+    background-color: ${theme.background.primary};
     padding: 0 ${spacing[2]};
     position: absolute;
     top: 0;
@@ -171,19 +173,17 @@ const Container = styled.div`
     left: ${spacing[4]};
     z-index: 100;
     border-radius: ${borderRadius.full};
-    background-color: ${theme.background.transparent};
-    border: 1px solid ${theme.border.secondary};
+    background-color: ${theme.background.primary};
+    border: 1px solid ${theme.border.primary};
   `}
 `;
 
 const ThemeSelector = styled(ToggleGroup.Root)`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: ${spacing[2]};
-  `}
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: ${spacing[2]};
 `;
 
 const ThemesTrigger = styled.button`
@@ -212,7 +212,6 @@ const ThemeButton = styled(ToggleGroup.Item)`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${theme.background.transparent};
     color: ${theme.text.primary};
     font-size: ${typographyBase.fontSize[2]};
     width: ${spacing[10]};

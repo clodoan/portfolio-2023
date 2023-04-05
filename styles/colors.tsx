@@ -11,9 +11,9 @@ export const lightTheme = {
     transparent: 'transparent',
   },
   border: {
-    primary: '#e5e7eb',
-    secondary: '#d1d5db',
-    tertiary: '#9ca3af',
+    primary: '#d4d5d7',
+    secondary: '#c4c5c7',
+    tertiary: '#b4b5b7',
     transparent: 'transparent',
   },
   button: {
