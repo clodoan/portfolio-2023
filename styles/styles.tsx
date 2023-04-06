@@ -1,11 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import { css } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
 
-import { darkTheme, lightTheme } from './colors';
-
-type ThemeType = typeof lightTheme | typeof darkTheme;
-
-export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
+export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     ${({ theme }) => css`
       * {
         box-sizing: border-box;

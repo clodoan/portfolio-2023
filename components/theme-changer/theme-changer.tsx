@@ -1,4 +1,5 @@
 import { borderRadius, spacing, typographyBase } from '@/styles';
+import { media } from '@/styles';
 import {
   darkTheme,
   greenTheme,
@@ -6,7 +7,6 @@ import {
   pinkTheme,
   purpleTheme,
 } from '@/styles/colors';
-import { Cross1Icon, MagicWandIcon } from '@radix-ui/react-icons';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -85,14 +85,15 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
 
   return (
     <Container>
-      <ThemesTrigger onClick={() => setThemesVisible(!themesVisible)}>
-        <AnimatePresence>
-          {themesVisible ? <Cross1Icon /> : <MagicWandIcon />}
-        </AnimatePresence>
+      <ThemesTrigger
+        onClick={() => setThemesVisible(!themesVisible)}
+        data-active={themesVisible}
+      >
+        🎨
       </ThemesTrigger>
       <AnimatePresence>
         {themesVisible && (
-          <Wrapper
+          <MotionWrapper
             initial={{ opacity: 0, x: -100 }}
             animate={{
               opacity: 1,
@@ -100,7 +101,7 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
               transition: { type: 'spring', duration: 0.3 },
             }}
             exit={{
-              x: -100,
+              x: -10,
               opacity: 0,
               transition: { duration: 0.1 },
             }}
@@ -142,39 +143,62 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
                 {themes.purple.icon}
               </ThemeButton>
             </ThemeSelector>
-          </Wrapper>
+          </MotionWrapper>
         )}
       </AnimatePresence>
     </Container>
   );
 };
 
-const Wrapper = styled(motion.span)`
-  ${({ theme }) => css`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: ${borderRadius.full};
-    border: 1px solid ${theme.border.primary};
-    background-color: ${theme.background.primary};
-    padding: 0 ${spacing[2]};
-    position: absolute;
-    top: 0;
-    left: ${spacing[20]};
-  `}
-`;
-
 const Container = styled.div`
   ${({ theme }) => css`
     position: absolute;
     bottom: ${spacing[4]};
-    left: ${spacing[4]};
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
-    border-radius: ${borderRadius.full};
+    display: flex;
+    flex-direction: row;
     background-color: ${theme.background.primary};
+    border-radius: ${borderRadius.full};
     border: 1px solid ${theme.border.primary};
+
+    @media ${media.mobileL} {
+      transform: translateX(0);
+      bottom: ${spacing[4]};
+      left: ${spacing[4]};
+    }
+  `}
+`;
+const MotionWrapper = styled(motion.span)``;
+
+const ThemesTrigger = styled.button`
+  ${({ theme }) => css`
+    all: unset;
+    position: relative;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.background.transparent};
+    color: ${theme.text.primary};
+    font-size: ${typographyBase.fontSize[2]};
+    padding: ${spacing[6]};
+    z-index: 2;
+
+    &[data-active='true'] {
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1px;
+        height: 50%;
+        background-color: ${theme.border.primary};
+      }
+    }
+
+    @media ${media.mobileL} {
+      display: flex;
+    }
   `}
 `;
 
@@ -183,39 +207,21 @@ const ThemeSelector = styled(ToggleGroup.Root)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: ${spacing[2]};
-`;
-
-const ThemesTrigger = styled.button`
-  ${({ theme }) => css`
-    all: unset;
-    position: relative;
-    height: ${spacing[10]};
-    width: ${spacing[10]};
-    border-radius: ${borderRadius.full};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${theme.background.transparent};
-    color: ${theme.text.primary};
-    font-size: ${typographyBase.fontSize[2]};
-    padding: ${spacing[2]};
-  `}
+  z-index: 1;
+  padding: 0 ${spacing[2]};
 `;
 
 const ThemeButton = styled(ToggleGroup.Item)`
   ${({ theme }) => css`
     all: unset;
     position: relative;
-    padding: ${spacing[2]};
+    padding: ${spacing[6]};
     border-radius: ${borderRadius.full};
     display: flex;
     justify-content: center;
     align-items: center;
     color: ${theme.text.primary};
     font-size: ${typographyBase.fontSize[2]};
-    width: ${spacing[10]};
-    height: ${spacing[10]};
 
     &[data-state='off'] {
       &:after {

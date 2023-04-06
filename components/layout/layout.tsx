@@ -6,14 +6,18 @@ const Layout = styled.main`
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-color: ${theme.background.primary};
-    background-image: linear-gradient(
-      45deg,
-      transparent 50%,
-      ${theme.background.secondary} 50%
-    );
-    background-size: 12px 12px;
-    background-position: 0 0, 2px 2px;
+    background-color: ${theme.background.tertiary};
+    opacity: 0.8;
+    background-image: radial-gradient(
+        ${theme.background.tertiary} 1.2px,
+        transparent 1.2px
+      ),
+      radial-gradient(
+        ${theme.background.tertiary} 1.2px,
+        ${theme.background.primary} 1.2px
+      );
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
   `}
 `;
 

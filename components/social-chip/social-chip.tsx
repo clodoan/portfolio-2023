@@ -83,18 +83,33 @@ const Container = styled(Link)`
     border: 1px solid ${theme.border.primary};
     padding: ${spacing[1]} ${spacing[2]};
     gap: ${spacing[2]};
+    transition: all 0.2s ease-in-out;
 
     svg {
       color: ${theme.text.tertiary};
+    }
+    path {
+      fill: ${theme.text.tertiary} !important;
+    }
+
+    &:hover {
+      background-color: ${theme.background.primary};
+      border: 1px solid ${theme.border.tertiary};
     }
   `}
 `;
 
 const StyledReadCVIcon = styled(ReadCVIcon)`
-  && svg {
-    width: 10px !important;
-    height: 10px !important;
-  }
+  ${({ theme }) => css`
+    && svg {
+      width: 10px !important;
+      height: 10px !important;
+
+      path {
+        fill: ${theme.text.tertiary} !important;
+      }
+    }
+  `}
 `;
 
 export default SocialChip;

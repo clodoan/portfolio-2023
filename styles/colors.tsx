@@ -1,4 +1,5 @@
 export const lightTheme = {
+  name: 'light',
   text: {
     primary: '#141414',
     secondary: '#262626',
@@ -39,6 +40,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  name: 'dark',
   text: {
     primary: '#f3f4f6',
     secondary: '#e5e7eb',
@@ -79,6 +81,7 @@ export const darkTheme = {
 };
 
 export const greenTheme = {
+  name: 'green',
   text: {
     primary: '#011e07',
     secondary: '#0a3d0a',
@@ -119,6 +122,7 @@ export const greenTheme = {
 };
 
 export const pinkTheme = {
+  name: 'pink',
   text: {
     primary: '#2d0c2f',
     secondary: '#4d0e4f',
@@ -159,6 +163,7 @@ export const pinkTheme = {
 };
 
 export const purpleTheme = {
+  name: 'purple',
   text: {
     primary: '#1d0c2f',
     secondary: '#2d0e4f',

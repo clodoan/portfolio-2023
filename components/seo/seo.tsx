@@ -1,6 +1,20 @@
 import { NextSeo } from 'next-seo';
+import { useTheme } from 'styled-components';
 
 const SEO = () => {
+  const theme = useTheme();
+  const themeName = theme.name;
+
+  const themedFavicon = [
+    ['light', '🌤️'],
+    ['dark', '🌝'],
+    ['green', '🌿'],
+    ['pink', '🦩'],
+    ['purple', '🍇'],
+  ];
+
+  const favicon = themedFavicon.find((item) => item[0] === themeName);
+
   return (
     <NextSeo
       title="Claudio's Portfolio"
@@ -33,6 +47,20 @@ const SEO = () => {
         site: '@clodoan',
         cardType: 'summary_large_image',
       }}
+      additionalLinkTags={[
+        {
+          rel: 'icon',
+          // eslint-disable-next-line no-useless-escape
+          href: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${
+            favicon && favicon[1]
+          }</text></svg>`,
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: `/favicon/apple-touch-icon.png`,
+          sizes: '76x76',
+        },
+      ]}
     />
   );
 };
