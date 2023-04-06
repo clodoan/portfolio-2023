@@ -83,7 +83,7 @@ const Container = styled(Link)`
     border: 1px solid ${theme.border.primary};
     padding: ${spacing[1]} ${spacing[2]};
     gap: ${spacing[2]};
-    transition: all 0.2s ease-in-out;
+    transition: border 0.2s ease-in-out;
 
     svg {
       color: ${theme.text.tertiary};
@@ -92,9 +92,11 @@ const Container = styled(Link)`
       fill: ${theme.text.tertiary} !important;
     }
 
-    &:hover {
-      background-color: ${theme.background.primary};
-      border: 1px solid ${theme.border.tertiary};
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${theme.background.primary};
+        border: 1px solid ${theme.border.tertiary};
+      }
     }
   `}
 `;
