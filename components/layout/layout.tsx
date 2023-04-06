@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const Layout = styled.main`
   ${({ theme }) => css`
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: ${theme.background.tertiary};
     opacity: 0.8;
