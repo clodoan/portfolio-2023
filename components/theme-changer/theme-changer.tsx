@@ -72,69 +72,57 @@ const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
   };
 
   return (
-    <Container layout>
+    <Container
+      layout
+      initial={{ borderRadius: '100px' }}
+      animate={{
+        borderRadius: '100px',
+        transition: { duration: 0.1, ease: 'easeOut' },
+      }}
+      exit={{
+        borderRadius: '100px',
+      }}
+    >
       <ThemesTrigger
+        layout
         onClick={() => setThemesVisible(!themesVisible)}
         data-active={themesVisible}
-        layout
       >
-        🎨
+        <IconWrapper>🎨</IconWrapper>
       </ThemesTrigger>
       <AnimatePresence>
         {themesVisible && (
-          <MotionWrapper
-            initial={{ opacity: 0, x: 0, y: -10 }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              y: 0,
-              transition: { duration: 0.1, ease: 'easeOut' },
-            }}
-            exit={{
-              x: 0,
-              y: 0,
-              opacity: 0,
-              transition: { duration: 0.1 },
-            }}
+          <StyledRoot
+            type="single"
+            aria-label="theme-selection"
+            onValueChange={(value) => HandleValue(value)}
+            defaultValue={activeTheme.name}
           >
-            <StyledRoot
-              type="single"
-              aria-label="theme-selection"
-              onValueChange={(value) => HandleValue(value)}
-              defaultValue={activeTheme.name}
+            <StyledItem
+              value={themes.light.name}
+              aria-label={themes.light.name}
             >
-              <StyledItem
-                value={themes.light.name}
-                aria-label={themes.light.name}
-              >
-                {themes.light.icon}
-              </StyledItem>
-              <StyledItem
-                value={themes.dark.name}
-                aria-label={themes.dark.name}
-              >
-                {themes.dark.icon}
-              </StyledItem>
-              <StyledItem
-                value={themes.green.name}
-                aria-label={themes.green.name}
-              >
-                {themes.green.icon}
-              </StyledItem>
-              <StyledItem
-                value={themes.pink.name}
-                aria-label={themes.pink.name}
-              >
-                {themes.pink.icon}
-              </StyledItem>
-              <StyledItem
-                value={themes.purple.name}
-                aria-label={themes.purple.name}
-              >
-                {themes.purple.icon}
-              </StyledItem>
-            </StyledRoot>
-          </MotionWrapper>
+              <IconWrapper>{themes.light.icon}</IconWrapper>
+            </StyledItem>
+            <StyledItem value={themes.dark.name} aria-label={themes.dark.name}>
+              <IconWrapper>{themes.dark.icon}</IconWrapper>
+            </StyledItem>
+            <StyledItem
+              value={themes.green.name}
+              aria-label={themes.green.name}
+            >
+              <IconWrapper>{themes.green.icon}</IconWrapper>
+            </StyledItem>
+            <StyledItem value={themes.pink.name} aria-label={themes.pink.name}>
+              <IconWrapper>{themes.pink.icon}</IconWrapper>
+            </StyledItem>
+            <StyledItem
+              value={themes.purple.name}
+              aria-label={themes.purple.name}
+            >
+              <IconWrapper>{themes.purple.icon}</IconWrapper>
+            </StyledItem>
+          </StyledRoot>
         )}
       </AnimatePresence>
     </Container>
@@ -143,11 +131,12 @@ const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
 
 const StyledRoot = styled(ToggleGroup.Root)`
   display: flex;
+  border-radius: ${borderRadius.full};
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1;
-  padding: ${spacing[2]} 0;
+  padding: ${spacing[2]} 0 ${spacing[3]} 0;
 `;
 
 const StyledItem = styled(ToggleGroup.Item)`
@@ -200,6 +189,7 @@ const Container = styled(motion.div)`
     background-color: ${theme.background.primary};
     border-radius: ${borderRadius.full};
     border: 1px solid ${theme.border.primary};
+    overflow: hidden;
 
     @media ${media.mobileL} {
       left: 50%;
@@ -238,6 +228,14 @@ const ThemesTrigger = styled(motion.button)`
       }
     }
   `}
+`;
+
+const IconWrapper = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${spacing[5]};
+  height: ${spacing[5]};
 `;
 
 export default ThemeChanger;
