@@ -17,6 +17,7 @@ const PersonalCard = () => {
           alt="Claudio Angrigiani"
           height={900}
           width={900}
+          priority
         />
       </ImageContainer>
       <TextContent>

@@ -46,7 +46,7 @@ const themes = {
 };
 
 const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
-  const [themesVisible, setThemesVisible] = useState(true);
+  const [themesVisible, setThemesVisible] = useState(false);
   const [storedTheme, setStoredTheme] = useState<string | null>(null);
 
   const HandleValue = (value: any) => {
@@ -84,65 +84,69 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
   });
 
   return (
-    <Container>
+    <Container layout>
       <ThemesTrigger
         onClick={() => setThemesVisible(!themesVisible)}
         data-active={themesVisible}
+        layout
       >
         🎨
       </ThemesTrigger>
       <AnimatePresence>
         {themesVisible && (
           <MotionWrapper
-            initial={{ opacity: 0, x: -100 }}
+            layout
+            initial={{ opacity: 0, x: 0, y: 40 }}
             animate={{
               opacity: 1,
               x: 0,
+              y: 0,
               transition: { type: 'spring', duration: 0.3 },
             }}
             exit={{
-              x: -10,
+              x: 0,
+              y: 0,
               opacity: 0,
               transition: { duration: 0.1 },
             }}
           >
-            <ThemeSelector
+            <StyledRoot
               type="single"
               aria-label="theme-selection"
               onValueChange={(value) => HandleValue(value)}
               defaultValue={storedTheme ? storedTheme : defaultTheme}
             >
-              <ThemeButton
+              <StyledItem
                 value={themes.light.name}
                 aria-label={themes.light.name}
               >
                 {themes.light.icon}
-              </ThemeButton>
-              <ThemeButton
+              </StyledItem>
+              <StyledItem
                 value={themes.dark.name}
                 aria-label={themes.dark.name}
               >
                 {themes.dark.icon}
-              </ThemeButton>
-              <ThemeButton
+              </StyledItem>
+              <StyledItem
                 value={themes.green.name}
                 aria-label={themes.green.name}
               >
                 {themes.green.icon}
-              </ThemeButton>
-              <ThemeButton
+              </StyledItem>
+              <StyledItem
                 value={themes.pink.name}
                 aria-label={themes.pink.name}
               >
                 {themes.pink.icon}
-              </ThemeButton>
-              <ThemeButton
+              </StyledItem>
+              <StyledItem
                 value={themes.purple.name}
                 aria-label={themes.purple.name}
               >
                 {themes.purple.icon}
-              </ThemeButton>
-            </ThemeSelector>
+              </StyledItem>
+            </StyledRoot>
           </MotionWrapper>
         )}
       </AnimatePresence>
@@ -150,20 +154,23 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
   );
 };
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   ${({ theme }) => css`
     position: absolute;
     bottom: ${spacing[4]};
-    left: 50%;
-    transform: translateX(-50%);
+    right: ${spacing[4]};
+    bottom: ${spacing[4]};
+    width: fit-content;
     z-index: 100;
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     background-color: ${theme.background.primary};
     border-radius: ${borderRadius.full};
     border: 1px solid ${theme.border.primary};
 
     @media ${media.mobileL} {
+      left: 50%;
+      transform: translateX(-50%);
       transform: translateX(0);
       bottom: ${spacing[4]};
       left: ${spacing[4]};
@@ -172,11 +179,12 @@ const Container = styled.div`
 `;
 const MotionWrapper = styled(motion.span)``;
 
-const ThemesTrigger = styled.button`
+const ThemesTrigger = styled(motion.button)`
   ${({ theme }) => css`
     all: unset;
-    position: relative;
     display: none;
+    position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: ${theme.background.transparent};
@@ -189,29 +197,25 @@ const ThemesTrigger = styled.button`
       &:after {
         content: '';
         position: absolute;
-        right: 0;
-        width: 1px;
-        height: 50%;
+        top: 0;
+        height: 1px;
+        width: 50%;
         background-color: ${theme.border.primary};
       }
-    }
-
-    @media ${media.mobileL} {
-      display: flex;
     }
   `}
 `;
 
-const ThemeSelector = styled(ToggleGroup.Root)`
+const StyledRoot = styled(ToggleGroup.Root)`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1;
-  padding: 0 ${spacing[2]};
+  padding: ${spacing[2]} 0;
 `;
 
-const ThemeButton = styled(ToggleGroup.Item)`
+const StyledItem = styled(ToggleGroup.Item)`
   ${({ theme }) => css`
     all: unset;
     position: relative;
