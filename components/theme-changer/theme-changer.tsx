@@ -9,12 +9,11 @@ import {
 } from '@/styles/colors';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import { useState } from 'react';
+import styled, { css, useTheme } from 'styled-components';
 
 type ThemeChangerProps = {
   onValueChange: (value: any) => void;
-  defaultTheme?: string;
 };
 
 const themes = {
@@ -45,43 +44,32 @@ const themes = {
   },
 };
 
-const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
+const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
   const [themesVisible, setThemesVisible] = useState(false);
-  const [storedTheme, setStoredTheme] = useState<string | null>(null);
+  const activeTheme = useTheme();
 
   const HandleValue = (value: any) => {
     switch (value) {
       case 'light':
         onValueChange(themes.light);
-        localStorage.setItem('theme', 'light');
         break;
       case 'dark':
         onValueChange(themes.dark);
-        localStorage.setItem('theme', 'dark');
         break;
       case 'green':
         onValueChange(themes.green);
-        localStorage.setItem('theme', 'green');
         break;
       case 'pink':
         onValueChange(themes.pink);
-        localStorage.setItem('theme', 'pink');
         break;
       case 'purple':
         onValueChange(themes.purple);
-        localStorage.setItem('theme', 'purple');
         break;
       default:
         onValueChange(themes.light);
-        localStorage.setItem('theme', 'light');
         break;
     }
   };
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    setStoredTheme(storedTheme);
-  });
 
   return (
     <Container layout>
@@ -95,13 +83,12 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
       <AnimatePresence>
         {themesVisible && (
           <MotionWrapper
-            layout
-            initial={{ opacity: 0, x: 0, y: 40 }}
+            initial={{ opacity: 0, x: 0, y: -10 }}
             animate={{
               opacity: 1,
               x: 0,
               y: 0,
-              transition: { type: 'spring', duration: 0.3 },
+              transition: { duration: 0.1, ease: 'easeOut' },
             }}
             exit={{
               x: 0,
@@ -114,7 +101,7 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
               type="single"
               aria-label="theme-selection"
               onValueChange={(value) => HandleValue(value)}
-              defaultValue={storedTheme ? storedTheme : defaultTheme}
+              defaultValue={activeTheme.name}
             >
               <StyledItem
                 value={themes.light.name}
@@ -153,58 +140,6 @@ const ThemeChanger = ({ onValueChange, defaultTheme }: ThemeChangerProps) => {
     </Container>
   );
 };
-
-const Container = styled(motion.div)`
-  ${({ theme }) => css`
-    position: absolute;
-    bottom: ${spacing[4]};
-    right: ${spacing[4]};
-    bottom: ${spacing[4]};
-    width: fit-content;
-    z-index: 100;
-    display: flex;
-    flex-direction: column-reverse;
-    background-color: ${theme.background.primary};
-    border-radius: ${borderRadius.full};
-    border: 1px solid ${theme.border.primary};
-
-    @media ${media.mobileL} {
-      left: 50%;
-      transform: translateX(-50%);
-      transform: translateX(0);
-      bottom: ${spacing[4]};
-      left: ${spacing[4]};
-    }
-  `}
-`;
-const MotionWrapper = styled(motion.span)``;
-
-const ThemesTrigger = styled(motion.button)`
-  ${({ theme }) => css`
-    all: unset;
-    display: none;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${theme.background.transparent};
-    color: ${theme.text.primary};
-    font-size: ${typographyBase.fontSize[2]};
-    padding: ${spacing[6]};
-    z-index: 2;
-
-    &[data-active='true'] {
-      &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        height: 1px;
-        width: 50%;
-        background-color: ${theme.border.primary};
-      }
-    }
-  `}
-`;
 
 const StyledRoot = styled(ToggleGroup.Root)`
   display: flex;
@@ -250,6 +185,59 @@ const StyledItem = styled(ToggleGroup.Item)`
         bottom: ${spacing[2]};
       }
    `}
+`;
+
+const Container = styled(motion.div)`
+  ${({ theme }) => css`
+    position: absolute;
+    bottom: ${spacing[4]};
+    right: ${spacing[4]};
+    bottom: ${spacing[4]};
+    width: fit-content;
+    z-index: 100;
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: ${theme.background.primary};
+    border-radius: ${borderRadius.full};
+    border: 1px solid ${theme.border.primary};
+
+    @media ${media.mobileL} {
+      left: 50%;
+      transform: translateX(-50%);
+      transform: translateX(0);
+      bottom: ${spacing[4]};
+      left: ${spacing[4]};
+    }
+  `}
+`;
+const MotionWrapper = styled(motion.span)``;
+
+const ThemesTrigger = styled(motion.button)`
+  ${({ theme }) => css`
+    all: unset;
+    display: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.background.primary};
+    color: ${theme.text.primary};
+    font-size: ${typographyBase.fontSize[2]};
+    border-radius: ${borderRadius.full};
+    padding: ${spacing[6]};
+    z-index: 2;
+
+    &[data-active='true'] {
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 1px;
+        width: 50%;
+        background-color: ${theme.border.primary};
+      }
+    }
+  `}
 `;
 
 export default ThemeChanger;
