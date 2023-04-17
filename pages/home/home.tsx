@@ -17,14 +17,9 @@ export default function Home() {
 
 const Aligner = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding-top: ${spacing[10]};
-
-  @media ${media.mobileL} {
-    justify-content: center;
-  }
 `;

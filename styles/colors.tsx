@@ -88,9 +88,9 @@ export const greenTheme = {
     tertiary: '#0f4f0f',
   },
   background: {
-    primary: '#d1f2eb',
-    secondary: '#a3e4d7',
-    tertiary: '#73d0c3',
+    primary: '#e8f6f3',
+    secondary: '#d1ebe8',
+    tertiary: '#b3e0dc',
     transparent: 'transparent',
   },
   border: {
@@ -124,20 +124,20 @@ export const greenTheme = {
 export const pinkTheme = {
   name: 'pink',
   text: {
-    primary: '#2d0c2f',
-    secondary: '#4d0e4f',
-    tertiary: '#6d106f',
+    primary: '#2b0d2c',
+    secondary: '#4b0e4b',
+    tertiary: '#6b0f6b',
   },
   background: {
-    primary: '#f8d7da',
-    secondary: '#f5b0ba',
-    tertiary: '#f48b97',
+    primary: '#fceaec',
+    secondary: '#f9d5d9',
+    tertiary: '#f5b0ba',
     transparent: 'transparent',
   },
   border: {
-    primary: '#f5b0ba',
-    secondary: '#f48b97',
-    tertiary: '#f06575',
+    primary: '#fdcdd4',
+    secondary: '#fca6b1',
+    tertiary: '#f97f8e',
     transparent: 'transparent',
   },
   button: {
@@ -170,15 +170,15 @@ export const purpleTheme = {
     tertiary: '#3d106f',
   },
   background: {
-    primary: '#e8d7f8',
-    secondary: '#d4b0f5',
-    tertiary: '#c18bf2',
+    primary: '#eee2f9',
+    secondary: '#ddd0f2',
+    tertiary: '#ccbdf0',
     transparent: 'transparent',
   },
   border: {
-    primary: '#d4b0f5',
-    secondary: '#c18bf2',
-    tertiary: '#a765f0',
+    primary: '#dac1f2',
+    secondary: '#c7a3e4',
+    tertiary: '#b383d6',
     transparent: 'transparent',
   },
   button: {

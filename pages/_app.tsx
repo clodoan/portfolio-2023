@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Layout>
-        <ThemeChanger onValueChange={(value) => setTheme(value.key)} />
+        <ThemeChanger onValueChange={(value) => setTheme(value)} />
         <Component {...pageProps} />
       </Layout>
     </ThemeProvider>

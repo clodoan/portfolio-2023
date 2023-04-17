@@ -16,73 +16,59 @@ type ThemeChangerProps = {
   onValueChange: (value: any) => void;
 };
 
-const themes = {
-  light: {
-    key: lightTheme,
-    name: 'light',
-    icon: '🌤️',
-  },
-  dark: {
+const themes = [
+  { key: lightTheme, name: 'light', icon: '🌤️' },
+  {
     key: darkTheme,
     name: 'dark',
     icon: '🌝',
   },
-  green: {
+  {
     key: greenTheme,
     name: 'green',
     icon: '🌿',
   },
-  pink: {
+  {
     key: pinkTheme,
     name: 'pink',
     icon: '🦩',
   },
-  purple: {
+  {
     key: purpleTheme,
     name: 'purple',
     icon: '🍇',
   },
-};
+];
 
 const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
-  const [themesVisible, setThemesVisible] = useState(false);
+  const [themesVisible, setThemesVisible] = useState(true);
   const activeTheme = useTheme();
 
   const HandleValue = (value: any) => {
     switch (value) {
       case 'light':
-        onValueChange(themes.light);
+        onValueChange(lightTheme);
         break;
       case 'dark':
-        onValueChange(themes.dark);
+        onValueChange(darkTheme);
         break;
       case 'green':
-        onValueChange(themes.green);
+        onValueChange(greenTheme);
         break;
       case 'pink':
-        onValueChange(themes.pink);
+        onValueChange(pinkTheme);
         break;
       case 'purple':
-        onValueChange(themes.purple);
+        onValueChange(purpleTheme);
         break;
       default:
-        onValueChange(themes.light);
+        onValueChange(lightTheme);
         break;
     }
   };
 
   return (
-    <Container
-      layout
-      initial={{ borderRadius: '100px' }}
-      animate={{
-        borderRadius: '100px',
-        transition: { duration: 0.1, ease: 'easeOut' },
-      }}
-      exit={{
-        borderRadius: '100px',
-      }}
-    >
+    <Container layout>
       <ThemesTrigger
         layout
         onClick={() => setThemesVisible(!themesVisible)}
@@ -98,30 +84,17 @@ const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
             onValueChange={(value) => HandleValue(value)}
             defaultValue={activeTheme.name}
           >
-            <StyledItem
-              value={themes.light.name}
-              aria-label={themes.light.name}
-            >
-              <IconWrapper>{themes.light.icon}</IconWrapper>
-            </StyledItem>
-            <StyledItem value={themes.dark.name} aria-label={themes.dark.name}>
-              <IconWrapper>{themes.dark.icon}</IconWrapper>
-            </StyledItem>
-            <StyledItem
-              value={themes.green.name}
-              aria-label={themes.green.name}
-            >
-              <IconWrapper>{themes.green.icon}</IconWrapper>
-            </StyledItem>
-            <StyledItem value={themes.pink.name} aria-label={themes.pink.name}>
-              <IconWrapper>{themes.pink.icon}</IconWrapper>
-            </StyledItem>
-            <StyledItem
-              value={themes.purple.name}
-              aria-label={themes.purple.name}
-            >
-              <IconWrapper>{themes.purple.icon}</IconWrapper>
-            </StyledItem>
+            {themes.map((theme) => {
+              return (
+                <StyledItem
+                  value={theme.name}
+                  aria-label={theme.name}
+                  key={theme.name}
+                >
+                  <IconWrapper>{theme.icon}</IconWrapper>
+                </StyledItem>
+              );
+            })}
           </StyledRoot>
         )}
       </AnimatePresence>
@@ -188,15 +161,15 @@ const Container = styled(motion.div)`
     flex-direction: column-reverse;
     background-color: ${theme.background.primary};
     border-radius: ${borderRadius.full};
-    border: 1px solid ${theme.border.primary};
+
     overflow: hidden;
 
     @media ${media.mobileL} {
-      left: 50%;
-      transform: translateX(-50%);
-      transform: translateX(0);
-      bottom: ${spacing[4]};
-      left: ${spacing[4]};
+      position: fixed;
+      transform: translateY(-50%);
+      top: 50%;
+      height: fit-content;
+      left: 0;
     }
   `}
 `;
@@ -205,9 +178,8 @@ const MotionWrapper = styled(motion.span)``;
 const ThemesTrigger = styled(motion.button)`
   ${({ theme }) => css`
     all: unset;
-    display: none;
-    position: relative;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     background-color: ${theme.background.primary};
@@ -226,6 +198,10 @@ const ThemesTrigger = styled(motion.button)`
         width: 50%;
         background-color: ${theme.border.primary};
       }
+    }
+
+    @media ${media.mobileL} {
+      display: none;
     }
   `}
 `;
