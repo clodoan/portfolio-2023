@@ -146,7 +146,7 @@ const Card = styled.div`
     background-color: ${theme.background.primary};
     border-radius: ${borderRadius.large};
     padding: ${spacing[5]};
-    margin: ${spacing[4]};
+    margin: ${spacing[4]} ${spacing[4]} ${spacing[10]} ${spacing[4]};
     display: flex;
     flex-direction: column;
     justify-content: center;
