@@ -9,9 +9,10 @@ import {
 } from '@/styles/colors';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import styled, { css, useTheme } from 'styled-components';
+import { useOnClickOutside } from 'usehooks-ts';
 
 type ThemeChangerProps = {
   onValueChange: (value: any) => void;
@@ -44,6 +45,9 @@ const themes = [
 const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
   const [themesVisible, setThemesVisible] = useState(true);
   const activeTheme = useTheme();
+  const ref = useRef(null);
+
+  useOnClickOutside(ref, () => setThemesVisible(false));
 
   const HandleValue = (value: any) => {
     switch (value) {
@@ -75,7 +79,7 @@ const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
   }, []);
 
   return (
-    <Container layout>
+    <Container layout ref={ref}>
       <ThemesTrigger
         layout
         onClick={() => setThemesVisible(!themesVisible)}
