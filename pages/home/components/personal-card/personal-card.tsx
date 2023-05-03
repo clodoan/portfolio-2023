@@ -2,10 +2,11 @@ import SocialChip from '@/components/social-chip';
 import Typography from '@/components/typography';
 import { borderRadius, media, spacing } from '@/styles';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import styled, { css, useTheme } from 'styled-components';
 
 import imageBertaSnow from '../../../../public/images/home/berta-snow.png';
@@ -28,7 +29,7 @@ const ImageArray = [
 ];
 
 const PersonalCard = () => {
-  const [image, setImage] = useState(ImageArray[0]);
+  const [count, setCount] = useState(1);
   const [rotation, setRotation] = useState(0);
 
   const generateRotation = () => {
@@ -37,30 +38,28 @@ const PersonalCard = () => {
   };
 
   const nextImage = () => {
-    const index = ImageArray.indexOf(image);
-    if (index === ImageArray.length - 1) {
-      setImage(ImageArray[0]);
+    if (count === ImageArray.length - 1) {
+      setCount(0);
       generateRotation();
     } else {
-      setImage(ImageArray[index + 1]);
+      setCount(count + 1);
       generateRotation();
     }
   };
 
   const prevImage = () => {
-    const index = ImageArray.indexOf(image);
-    if (index === 0) {
-      setImage(ImageArray[ImageArray.length - 1]);
+    if (count === 0) {
+      setCount(ImageArray.length - 1);
       generateRotation();
     } else {
-      setImage(ImageArray[index - 1]);
+      setCount(count - 1);
       generateRotation();
     }
   };
 
   return (
     <Card>
-      <Carrousel rotation={rotation}>
+      <Carrousel>
         <CarrouselButton
           data-type="prev"
           onClick={() => prevImage()}
@@ -68,15 +67,29 @@ const PersonalCard = () => {
         >
           <ChevronLeftIcon />
         </CarrouselButton>
-        <ImageContainer className="imageContainer" rotation={rotation}>
-          <Image
-            src={image}
-            alt={`Claudio Angrigiani's profile picture`}
-            height={900}
-            width={900}
-            priority
-          />
-        </ImageContainer>
+        <ImageArea rotation={rotation}>
+          <AnimatePresence>
+            <ImageContainer
+              className="imageContainer"
+              key={ImageArray[count].src}
+              initial={{
+                x: 0,
+                opacity: 0,
+              }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 0, opacity: 0 }}
+              transition={{ duration: 0.1 }}
+            >
+              <StyledImage
+                src={ImageArray[count]}
+                alt={`Claudio Angrigiani's profile picture`}
+                height={900}
+                width={900}
+                priority
+              />
+            </ImageContainer>
+          </AnimatePresence>
+        </ImageArea>
         <CarrouselButton
           data-type="next"
           onClick={() => nextImage()}
@@ -84,16 +97,18 @@ const PersonalCard = () => {
         >
           <ChevronRightIcon />
         </CarrouselButton>
-        <IndicatorContainer>
-          {ImageArray.map((i) => {
-            return (
-              <Indicator
-                active={image === ImageArray[ImageArray.indexOf(i)]}
-                key={ImageArray.indexOf(i)}
-              />
-            );
-          })}
-        </IndicatorContainer>
+        {!isMobile && (
+          <IndicatorContainer>
+            {ImageArray.map((i) => {
+              return (
+                <Indicator
+                  active={ImageArray[count] === i}
+                  key={ImageArray.indexOf(i)}
+                />
+              );
+            })}
+          </IndicatorContainer>
+        )}
       </Carrousel>
       <TextContent>
         <Typography variant="heading-1" color="primary" as="h1">
@@ -151,22 +166,35 @@ const Card = styled.div`
   `}
 `;
 
-const ImageContainer = styled(motion.div)<{ rotation: number }>`
-  ${({ theme, rotation }) => css`
-    border-radius: ${borderRadius.large};
-    box-shadow: ${theme.shadow[2]};
-    transform: rotate(${rotation}deg);
+const ImageArea = styled.div<{ rotation: number }>`
+  ${({ rotation }) => css`
+    position: relative;
     overflow: hidden;
     height: 390px;
     min-width: 312px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
+    transform: rotate(${rotation}deg);
+    border-radius: ${borderRadius.large};
   `}
+`;
+
+const ImageContainer = styled(motion.div)`
+  ${({ theme }) => css`
+    border-radius: ${borderRadius.large};
+    box-shadow: ${theme.shadow[2]};
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: absolute;
+  `}
+`;
+
+const StyledImage = styled(Image)`
+  border-radius: ${borderRadius.large};
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Subtitle = styled.div`
@@ -193,14 +221,18 @@ const TextContent = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: ${spacing[2]};
-  padding: ${spacing[5]} ${spacing[4]} ${spacing[3]} ${spacing[4]};
+  padding: ${spacing[2]};
+
+  @media ${media.mobileL} {
+    padding: ${spacing[5]} ${spacing[4]} ${spacing[3]} ${spacing[4]};
+  }
 `;
 
 const CarrouselButton = styled.button`
   ${({ theme }) => css`
     border: 1px solid ${theme.border.secondary};
     border-radius: ${borderRadius.full};
-    display: flex;
+    display: none;
     padding: ${spacing[4]};
     justify-content: center;
     align-items: center;
@@ -220,11 +252,12 @@ const CarrouselButton = styled.button`
 
     @media ${media.mobileL} {
       padding: ${spacing[2]};
+      display: flex;
     }
   `}
 `;
 
-const Carrousel = styled.div<{ rotation: number }>`
+const Carrousel = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

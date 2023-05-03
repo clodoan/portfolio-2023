@@ -9,7 +9,8 @@ import {
 } from '@/styles/colors';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import styled, { css, useTheme } from 'styled-components';
 
 type ThemeChangerProps = {
@@ -66,6 +67,12 @@ const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {
         break;
     }
   };
+
+  useEffect(() => {
+    if (isMobile) {
+      setThemesVisible(false);
+    }
+  }, []);
 
   return (
     <Container layout>
@@ -161,6 +168,7 @@ const Container = styled(motion.div)`
     flex-direction: column-reverse;
     background-color: ${theme.background.primary};
     border-radius: ${borderRadius.full};
+    border: 1px solid ${isMobile ? theme.border.primary : 'transparent'};
 
     overflow: hidden;
 
