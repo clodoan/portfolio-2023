@@ -1,4 +1,4 @@
-import { spacing } from '@/styles';
+import { borderRadius, spacing } from '@/styles';
 import { media } from '@/styles';
 import styled, { css, useTheme } from 'styled-components';
 
@@ -41,6 +41,7 @@ const DesktopThemeChanger = ({ onValueChange }: DesktopThemeChangerProps) => {
         onValueChange={(value: string) => handleValue(value)}
         defaultValue={activeTheme.name}
         themes={themesList}
+        direction="row"
       />
     </Container>
   );
@@ -50,16 +51,17 @@ const Container = styled.div`
   ${({ theme }) => css`
     display: none;
     position: absolute;
-    left: 0;
-    top: 50%;
+    right: ${spacing[4]}};
+    bottom: 0;
     transform: translateY(-50%);
     width: fit-content;
     z-index: 100;
     flex-direction: column-reverse;
     background-color: ${theme.background.primary};
+    border-radius: ${borderRadius.full};
     overflow: hidden;
 
-    @media ${media.desktop} {
+    @media ${media.tablet} {
       display: flex;
     }
   `}

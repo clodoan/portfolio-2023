@@ -5,7 +5,7 @@ import MobileThemeChanger from './components/mobile-theme-changer';
 import { Theme } from './components/themes-list/themes-list';
 
 type ThemeChangerProps = {
-  onValueChange: (value: Theme) => void;
+  onValueChange: (value: Theme | any) => void;
 };
 
 const ThemeChanger = ({ onValueChange }: ThemeChangerProps) => {

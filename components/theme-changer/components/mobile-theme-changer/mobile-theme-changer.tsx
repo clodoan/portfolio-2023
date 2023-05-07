@@ -75,7 +75,7 @@ const Container = styled(motion.div)`
     border: 1px solid ${theme.border.primary};
     overflow: hidden;
 
-    @media ${media.mobile} {
+    @media ${media.tablet} {
       display: none;
     }
   `}

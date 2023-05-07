@@ -1,4 +1,5 @@
 import Layout from '@/components/layout';
+import { Theme } from '@/components/theme-changer/components/themes-list/themes-list';
 import ThemeChanger from '@/components/theme-changer/theme-changer';
 import { GlobalStyle } from '@/styles';
 import { purpleTheme } from '@/styles/colors';

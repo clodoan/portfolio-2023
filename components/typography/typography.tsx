@@ -13,7 +13,7 @@ type TypographyProps = {
     | 'label-2'
     | 'label-3';
   color?: 'primary' | 'secondary' | 'tertiary';
-  children: string;
+  children: string | React.ReactNode;
   as?: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 };
 

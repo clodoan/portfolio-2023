@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import React, { useState } from 'react';
-import { isMobile } from 'react-device-detect';
 import styled, { css } from 'styled-components';
 
 type CarrouselProps = {
@@ -79,24 +78,35 @@ const Carrousel = ({ images }: CarrouselProps) => {
       >
         <ChevronRightIcon />
       </CarrouselButton>
-      {!isMobile && (
-        <IndicatorContainer>
-          {images.map((i) => {
-            return (
-              <Indicator active={images[count] === i} key={images.indexOf(i)} />
-            );
-          })}
-        </IndicatorContainer>
-      )}
+      <IndicatorContainer>
+        {images.map((i) => {
+          return (
+            <Indicator active={images[count] === i} key={images.indexOf(i)} />
+          );
+        })}
+      </IndicatorContainer>
     </Container>
   );
 };
+
+const Container = styled.div`
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: ${spacing[2]};
+  position: relative;
+
+  @media ${media.mobile} {
+    display: flex;
+  }
+`;
 
 const CarrouselButton = styled.button`
   ${({ theme }) => css`
     border: 1px solid ${theme.border.secondary};
     border-radius: ${borderRadius.full};
-    display: none;
+    display: flex;
     padding: ${spacing[4]};
     justify-content: center;
     align-items: center;
@@ -116,18 +126,8 @@ const CarrouselButton = styled.button`
 
     @media ${media.mobile} {
       padding: ${spacing[2]};
-      display: flex;
     }
   `}
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: ${spacing[2]};
-  position: relative;
 `;
 
 const IndicatorContainer = styled.div`
