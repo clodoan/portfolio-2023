@@ -39,6 +39,7 @@ const Carrousel = ({ images }: CarrouselProps) => {
       generateRotation();
     }
   };
+
   return (
     <Container>
       <CarrouselButton
@@ -113,7 +114,7 @@ const CarrouselButton = styled.button`
       fill: ${theme.text.secondary};
     }
 
-    @media ${media.mobileL} {
+    @media ${media.mobile} {
       padding: ${spacing[2]};
       display: flex;
     }
@@ -130,7 +131,7 @@ const Container = styled.div`
 `;
 
 const IndicatorContainer = styled.div`
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -140,6 +141,10 @@ const IndicatorContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+
+  @media ${media.mobile} {
+    display: flex;
+  }
 `;
 
 const Indicator = styled.div<{ active: boolean }>`

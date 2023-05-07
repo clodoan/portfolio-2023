@@ -63,20 +63,19 @@ const MobileThemeChanger = ({ onValueChange }: MobileThemeChangerProps) => {
 
 const Container = styled(motion.div)`
   ${({ theme }) => css`
+    display: flex;
     position: absolute;
-    bottom: ${spacing[4]};
     right: ${spacing[4]};
     bottom: ${spacing[4]};
     width: fit-content;
     z-index: 100;
-    display: flex;
     flex-direction: column-reverse;
     background-color: ${theme.background.primary};
     border-radius: ${borderRadius.full};
     border: 1px solid ${theme.border.primary};
     overflow: hidden;
 
-    @media ${media.mobileL} {
+    @media ${media.mobile} {
       display: none;
     }
   `}

@@ -41,7 +41,7 @@ const ThemesTrigger = styled(motion.button)`
       }
     }
 
-    @media ${media.mobileL} {
+    @media ${media.mobile} {
       display: none;
     }
   `}

@@ -59,7 +59,7 @@ const Container = styled.div`
     background-color: ${theme.background.primary};
     overflow: hidden;
 
-    @media ${media.mobileL} {
+    @media ${media.desktop} {
       display: flex;
     }
   `}

@@ -1,8 +1,6 @@
 import Typography from '@/components/typography';
 import SocialChip from '@/pages/home/components/intro/components/social-chip';
 import { borderRadius, media, spacing } from '@/styles';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import styled, { css, useTheme } from 'styled-components';
@@ -80,7 +78,7 @@ const Card = styled.div`
       text-decoration: none;
     }
 
-    @media ${media.mobileL} {
+    @media ${media.mobile} {
       max-width: 912px;
       flex-direction: row;
     }
@@ -113,7 +111,7 @@ const TextContent = styled.div`
   gap: ${spacing[2]};
   padding: ${spacing[2]};
 
-  @media ${media.mobileL} {
+  @media ${media.mobile} {
     padding: ${spacing[5]} ${spacing[4]} ${spacing[3]} ${spacing[4]};
   }
 `;
