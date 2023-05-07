@@ -1,6 +1,6 @@
-import { borderRadius, media, spacing } from '@/styles';
+import { media, spacing } from '@/styles';
 import React from 'react';
-import styled, { css, useTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import imageBertaSnow from '../../../../public/images/home/berta-snow.png';
 import imageBerta from '../../../../public/images/home/berta.png';

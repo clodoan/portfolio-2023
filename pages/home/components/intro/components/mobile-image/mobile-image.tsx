@@ -2,7 +2,7 @@ import { borderRadius } from '@/styles';
 import { media } from '@/styles';
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 type MobileImageProps = {
   image: StaticImageData;

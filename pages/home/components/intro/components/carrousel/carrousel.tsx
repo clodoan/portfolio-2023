@@ -1,10 +1,11 @@
 import { borderRadius, media, spacing } from '@/styles';
-import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
+
+import SliderButton from './components/slider-button';
 
 type CarrouselProps = {
   images: StaticImageData[];
@@ -12,79 +13,66 @@ type CarrouselProps = {
 
 const Carrousel = ({ images }: CarrouselProps) => {
   const [rotation, setRotation] = useState(0);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
 
-  const generateRotation = () => {
-    const random = Math.floor(Math.random() * 8 - 5);
+  useEffect(() => {
+    const random = Math.floor(Math.random() * 10 - 5);
     setRotation(random);
-  };
+  }, [count]);
 
   const nextImage = () => {
-    if (count === images.length - 1) {
-      setCount(0);
-      generateRotation();
-    } else {
-      setCount(count + 1);
-      generateRotation();
+    if (images) {
+      if (count === images?.length - 1) {
+        setCount(0);
+      } else {
+        setCount(count + 1);
+      }
     }
   };
 
   const prevImage = () => {
-    if (count === 0) {
-      setCount(images.length - 1);
-      generateRotation();
-    } else {
-      setCount(count - 1);
-      generateRotation();
+    if (images) {
+      if (count === 0) {
+        setCount(images?.length - 1);
+      } else {
+        setCount(count - 1);
+      }
     }
   };
 
   return (
     <Container>
-      <CarrouselButton
-        data-type="prev"
-        onClick={() => prevImage()}
-        className="sliderButton"
+      <SliderButton onClick={() => prevImage()} type="prev" />
+      <ImageContainer
+        key={images[count].src}
+        initial={{
+          x: 0,
+          opacity: 0,
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+          transform: `rotate(${rotation}deg)`,
+        }}
+        exit={{ x: 0, opacity: 0 }}
+        transition={{ duration: 0.1 }}
       >
-        <ChevronLeftIcon />
-      </CarrouselButton>
-      <ImageArea rotation={rotation}>
-        <AnimatePresence>
-          <ImageContainer
-            className="imageContainer"
-            key={images[count].src}
-            initial={{
-              x: 0,
-              opacity: 0,
-            }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 0, opacity: 0 }}
-            transition={{ duration: 0.1 }}
-          >
-            <StyledImage
-              src={images[count]}
-              alt={`Claudio Angrigiani's profile picture`}
-              height={600}
-              width={600}
-              priority
-            />
-          </ImageContainer>
-        </AnimatePresence>
-      </ImageArea>
-      <CarrouselButton
-        data-type="next"
-        onClick={() => nextImage()}
-        className="sliderButton"
-      >
-        <ChevronRightIcon />
-      </CarrouselButton>
+        <StyledImage
+          src={images[count] ? images[count].src : '/images/wharf.jpg'}
+          alt={`Claudio Angrigiani's profile picture`}
+          height={600}
+          width={600}
+          priority
+        />
+      </ImageContainer>
       <IndicatorContainer>
-        {images.map((i) => {
+        {images?.map((i) => {
           return (
             <Indicator active={images[count] === i} key={images.indexOf(i)} />
           );
         })}
       </IndicatorContainer>
+      <SliderButton onClick={() => nextImage()} type="next" />
     </Container>
   );
 };
@@ -100,34 +88,6 @@ const Container = styled.div`
   @media ${media.mobile} {
     display: flex;
   }
-`;
-
-const CarrouselButton = styled.button`
-  ${({ theme }) => css`
-    border: 1px solid ${theme.border.secondary};
-    border-radius: ${borderRadius.full};
-    display: flex;
-    padding: ${spacing[4]};
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: transparent;
-    transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-    z-index: 2;
-
-    &:hover {
-      background-color: ${theme.background.secondary};
-      border: 1px solid ${theme.border.primary};
-    }
-
-    svg path {
-      fill: ${theme.text.secondary};
-    }
-
-    @media ${media.mobile} {
-      padding: ${spacing[2]};
-    }
-  `}
 `;
 
 const IndicatorContainer = styled.div`
@@ -159,26 +119,14 @@ const Indicator = styled.div<{ active: boolean }>`
   `}
 `;
 
-const ImageArea = styled.div<{ rotation: number }>`
-  ${({ rotation }) => css`
-    position: relative;
-    overflow: hidden;
-    height: 390px;
-    min-width: 312px;
-    transform: rotate(${rotation}deg);
-    border-radius: ${borderRadius.large};
-  `}
-`;
-
 const ImageContainer = styled(motion.div)`
   ${({ theme }) => css`
     border-radius: ${borderRadius.large};
     box-shadow: ${theme.shadow[2]};
     overflow: hidden;
-    width: 100%;
-    height: 100%;
+    width: 240px;
+    height: 280px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    position: absolute;
   `}
 `;
 

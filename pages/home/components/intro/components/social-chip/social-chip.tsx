@@ -5,7 +5,6 @@ import {
   LinkedInLogoIcon,
   TwitterLogoIcon,
 } from '@radix-ui/react-icons';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import styled, { css } from 'styled-components';
@@ -64,7 +63,7 @@ const handleLabel = (name: string) => {
 
 const SocialChip = ({ href, name }: SocialChipProps) => {
   return (
-    <Container href={href} target="_blank">
+    <Container href={href ? href : '/'} target="_blank">
       {handleIcon(name)}
       <Typography variant="body-2" color="secondary">
         {handleLabel(name)}

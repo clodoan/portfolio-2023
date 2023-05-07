@@ -1,8 +1,7 @@
 import Typography from '@/components/typography';
-import { borderRadius, media, spacing } from '@/styles';
-import Link from 'next/link';
+import { media, spacing } from '@/styles';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import content from '../../../../content/content.json';
 import SocialChip from '../social-chip';
