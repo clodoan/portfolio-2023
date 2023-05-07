@@ -51,9 +51,8 @@ const Container = styled.div`
   ${({ theme }) => css`
     display: none;
     position: absolute;
-    right: ${spacing[4]}};
-    bottom: 0;
-    transform: translateY(-50%);
+    right: ${spacing[4]};
+    bottom: ${spacing[4]};
     width: fit-content;
     z-index: 100;
     flex-direction: column-reverse;
