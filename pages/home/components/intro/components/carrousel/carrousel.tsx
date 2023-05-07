@@ -120,14 +120,11 @@ const Indicator = styled.div<{ active: boolean }>`
 `;
 
 const ImageContainer = styled(motion.div)`
-  ${({ theme }) => css`
-    border-radius: ${borderRadius.large};
-    box-shadow: ${theme.shadow[2]};
-    overflow: hidden;
-    width: 240px;
-    height: 280px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  `}
+  border-radius: ${borderRadius.large};
+  overflow: hidden;
+  width: 240px;
+  height: 280px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 `;
 
 const StyledImage = styled(Image)`
