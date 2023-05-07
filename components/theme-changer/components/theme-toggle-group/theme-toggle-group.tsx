@@ -28,7 +28,9 @@ const ThemeToggleGroup = ({
       direction={direction}
     >
       {themes.map((theme: Theme) => {
-        return <ThemeToggle name={theme.name} icon={theme.icon} />;
+        return (
+          <ThemeToggle name={theme.name} icon={theme.icon} key={theme.name} />
+        );
       })}
     </StyledRoot>
   );
