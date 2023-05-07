@@ -10,8 +10,8 @@ import Link from 'next/link';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import ReadCVIcon from '../icons/read-cv';
-import Typography from '../typography';
+import ReadCVIcon from '../../../../../../components/icons/read-cv';
+import Typography from '../../../../../../components/typography';
 
 type SocialChipProps = {
   href: string;

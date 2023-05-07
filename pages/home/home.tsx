@@ -1,15 +1,14 @@
 import SEO from '@/components/seo';
-import { media, spacing } from '@/styles';
 import styled from 'styled-components';
 
-import PersonalCard from './components/personal-card';
+import Intro from './components/intro';
 
 export default function Home() {
   return (
     <>
       <SEO />
       <Aligner>
-        <PersonalCard />
+        <Intro />
       </Aligner>
     </>
   );
