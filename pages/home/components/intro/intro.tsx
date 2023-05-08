@@ -2,11 +2,13 @@ import { media, spacing } from '@/styles';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import imageBertaSnow from '../../../../public/images/home/berta-snow.png';
+import imageBeach from '../../../../public/images/home/beach.png';
 import imageBerta from '../../../../public/images/home/berta.png';
-import imageDrink from '../../../../public/images/home/drink.png';
-import imageLights from '../../../../public/images/home/lights.png';
+import imageForest from '../../../../public/images/home/forest.png';
 import imageMaiaSnow from '../../../../public/images/home/maia-snow.png';
+import imageMeSun from '../../../../public/images/home/me-sun.png';
+import imageMiami from '../../../../public/images/home/miami.png';
+import imageSnowboard from '../../../../public/images/home/snowboard.png';
 import imageSun from '../../../../public/images/home/sun.png';
 import imageWharf from '../../../../public/images/home/wharf.png';
 import Carrousel from './components/carrousel';
@@ -14,11 +16,13 @@ import MobileImage from './components/mobile-image';
 import TextContent from './components/text-content';
 
 const ImageArray = [
-  imageBertaSnow,
+  imageBeach,
   imageBerta,
-  imageDrink,
-  imageLights,
+  imageForest,
   imageMaiaSnow,
+  imageMeSun,
+  imageMiami,
+  imageSnowboard,
   imageSun,
   imageWharf,
 ];
@@ -26,7 +30,7 @@ const ImageArray = [
 const Intro = () => {
   return (
     <Container>
-      <MobileImage image={imageWharf} />
+      <MobileImage image={imageMiami} />
       <Carrousel images={ImageArray} />
       <TextContent />
     </Container>
@@ -45,13 +49,13 @@ const Container = styled.section`
     gap: ${spacing[10]};
     z-index: 2;
     min-height: 100vh;
+    margin: 0 auto;
 
     a {
       text-decoration: none;
     }
 
     @media ${media.tablet} {
-      margin: ${spacing[4]} auto ${spacing[10]} auto;
       max-width: 912px;
       flex-direction: row;
     }

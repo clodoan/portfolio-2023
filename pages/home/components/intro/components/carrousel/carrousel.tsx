@@ -1,5 +1,4 @@
 import { borderRadius, media, spacing } from '@/styles';
-import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import React, { useEffect, useState } from 'react';

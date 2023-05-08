@@ -20,7 +20,7 @@ const StyledItem = styled(ToggleGroup.Item)`
   ${({ theme }) => css`
     all: unset;
     position: relative;
-    padding: ${spacing[6]};
+    padding: ${spacing[5]};
     border-radius: ${borderRadius.full};
     display: flex;
     justify-content: center;

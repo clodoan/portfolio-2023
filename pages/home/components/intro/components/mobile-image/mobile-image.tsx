@@ -13,8 +13,8 @@ const MobileImage = ({ image }: MobileImageProps) => {
     <Container>
       <StyledImage
         src={image}
-        width={600}
-        height={600}
+        width={800}
+        height={800}
         alt="Image of Claudio Angrigiani"
       />
     </Container>
@@ -26,7 +26,7 @@ const Container = styled.div`
   border-radius: ${borderRadius.large};
   overflow: hidden;
   width: 100%;
-  height: fit-content;
+  height: 260px;
 
   @media ${media.mobile} {
     display: none;
