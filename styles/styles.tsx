@@ -20,5 +20,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
+      ::selection {
+        background: ${theme.background.tertiary};
+      }
     `}
 `;
