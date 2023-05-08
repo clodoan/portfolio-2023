@@ -1,0 +1,58 @@
+{
+  "work": [
+    {
+      "position": "Head of Acceleration Program Argentina",
+      "employer": "Masisa Lab",
+      "year-start": "2016",
+      "year-end": "2017"
+    },
+    {
+      "position": "Partner - Head of Product & Design",
+      "employer": "Cran.io",
+      "year-start": "2014",
+      "year-end": "2016"
+    },
+    {
+      "position": "Senior Product Designer",
+      "employer": "Banco Galicia",
+      "year-start": "2017",
+      "year-end": "2018"
+    },
+    {
+      "position": "Product Design Manager",
+      "employer": "Banco Galicia",
+      "year-start": "2018",
+      "year-end": "2019"
+    },
+    {
+      "position": "Co-Founder & CDO",
+      "employer": "Dorothy",
+      "year-start": "2019",
+      "year-end": "2021"
+    },
+    {
+      "position": "Product Designer",
+      "employer": "Mainstreet",
+      "year-start": "2021",
+      "year-end": "2022"
+    },
+    {
+      "position": "Design Engineer",
+      "employer": "Footprint",
+      "year-start": "2022",
+      "year-end": "Present"
+    }
+  ],
+  "study": [
+    {
+      "degree": "Industrial Engineering",
+      "institution": "Instituto Tecnológico de Buenos Aires",
+      "year": "2013"
+    },
+    {
+      "degree": "Master in Integrated Product Design",
+      "institution": "University of Pennsylvania",
+      "year": "2021"
+    }
+  ]
+}
