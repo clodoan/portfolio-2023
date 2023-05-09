@@ -57,11 +57,8 @@ const Carrousel = ({ images }: CarrouselProps) => {
         transition={{ duration: 0.1 }}
       >
         <StyledImage
-          src={images[count] ? images[count].src : '/images/wharf.jpg'}
+          src={images[count] ? images[count] : '/images/wharf.jpg'}
           alt={`Claudio Angrigiani's profile picture`}
-          height={600}
-          width={600}
-          priority
         />
       </ImageContainer>
       <IndicatorContainer>
