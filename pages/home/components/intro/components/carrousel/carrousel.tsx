@@ -45,16 +45,16 @@ const Carrousel = ({ images }: CarrouselProps) => {
       <ImageContainer
         key={images[count].src}
         initial={{
-          x: 0,
-          opacity: 0,
+          opacity: 0.5,
         }}
         animate={{
-          x: 0,
-          opacity: 1,
           transform: `rotate(${rotation}deg)`,
+          opacity: 1,
         }}
-        exit={{ x: 0, opacity: 0 }}
-        transition={{ duration: 0.1 }}
+        exit={{
+          opacity: 0.5,
+        }}
+        transition={{ duration: 0.5 }}
       >
         <StyledImage
           src={images[count] ? images[count] : '/images/wharf.jpg'}
