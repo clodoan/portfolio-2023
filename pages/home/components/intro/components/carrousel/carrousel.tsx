@@ -59,6 +59,8 @@ const Carrousel = ({ images }: CarrouselProps) => {
         <StyledImage
           src={images[count] ? images[count] : '/images/wharf.jpg'}
           alt={`Claudio Angrigiani's profile picture`}
+          placeholder="blur"
+          blurDataURL={images[count].src}
         />
       </ImageContainer>
       <IndicatorContainer>
