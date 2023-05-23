@@ -16,12 +16,12 @@ import MobileImage from './components/mobile-image';
 import TextContent from './components/text-content';
 
 const ImageArray = [
+  imageMiami,
+  imageForest,
   imageBeach,
   imageBerta,
-  imageForest,
   imageMaiaSnow,
   imageMeSun,
-  imageMiami,
   imageSnowboard,
   imageSun,
   imageWharf,

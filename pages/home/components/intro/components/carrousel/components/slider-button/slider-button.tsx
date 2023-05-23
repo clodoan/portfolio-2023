@@ -1,5 +1,6 @@
 import { borderRadius, media, spacing } from '@/styles';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -11,14 +12,26 @@ type ButtonProps = {
 
 const SliderButton = ({ onClick, className, type }: ButtonProps) => {
   return (
-    <Container data-type="prev" onClick={onClick} className={className}>
+    <Container
+      data-type="prev"
+      onClick={onClick}
+      className={className}
+      initial={{
+        opacity: 0.5,
+        backgroundColor: 'transparent',
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{ duration: 1, delay: 0.5 }}
+    >
       {type === 'prev' && <ChevronLeftIcon />}
       {type === 'next' && <ChevronRightIcon />}
     </Container>
   );
 };
 
-const Container = styled.button`
+const Container = styled(motion.button)`
   ${({ theme }) => css`
     border: 1px solid ${theme.border.secondary};
     border-radius: ${borderRadius.full};

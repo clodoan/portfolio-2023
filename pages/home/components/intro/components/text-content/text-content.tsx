@@ -1,5 +1,6 @@
 import Typography from '@/components/typography';
 import { media, spacing } from '@/styles';
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,7 +9,17 @@ import SocialChip from '../social-chip';
 
 const TextContent = () => {
   return (
-    <Container>
+    <Container
+      initial={{
+        opacity: 0,
+        y: -10,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{ duration: 2 }}
+    >
       <Typography variant="heading-1" color="primary" as="h1">
         {content.home.title}
       </Typography>
@@ -33,7 +44,7 @@ const TextContent = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
