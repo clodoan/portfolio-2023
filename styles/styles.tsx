@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
       body {
         margin: 0;
         overflow: auto;
+        position: relative;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }

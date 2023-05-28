@@ -9,6 +9,7 @@ const Work = () => {
   return (
     <>
       <SEO />
+
       <Container>Work</Container>
     </>
   );
