@@ -1,16 +1,15 @@
 import { GlobalStyle } from '@/styles';
-import { light } from '@/styles/themes';
+import { dark, light } from '@/styles/themes';
 import { MDXProvider } from '@mdx-js/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { DefaultTheme } from 'styled-components';
 
 import components from '../components/mdx-base-components/mdx-base-components';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const theme: DefaultTheme = light;
+  const theme: DefaultTheme = dark;
 
   return (
     <ThemeProvider theme={theme}>

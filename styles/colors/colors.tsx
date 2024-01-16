@@ -3,9 +3,9 @@ import { ColorTheme } from './colors-types';
 export const lightTheme: ColorTheme = {
   name: 'light',
   text: {
-    primary: '#141414',
-    secondary: '#262626',
-    tertiary: '#3a3a3a',
+    primary: '#161616',
+    secondary: '#1c1c1c',
+    tertiary: '#232323',
   },
   background: {
     primary: '#f3f4f6',
@@ -39,14 +39,14 @@ export const lightTheme: ColorTheme = {
 export const darkTheme: ColorTheme = {
   name: 'dark',
   text: {
-    primary: '#f3f4f6',
-    secondary: '#e5e7eb',
-    tertiary: '#d1d5db',
+    primary: '#ededed',
+    secondary: '#a0a0a0',
+    tertiary: '##7e7e7e',
   },
   background: {
-    primary: '#111827',
-    secondary: '#1f2937',
-    tertiary: '#374151',
+    primary: '#161616',
+    secondary: '#1c1c1c',
+    tertiary: '#232323',
     transparent: 'transparent',
   },
   border: {

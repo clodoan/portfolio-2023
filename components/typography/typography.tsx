@@ -72,25 +72,25 @@ const handleColor = (color: TypographyProps['color'], theme: Theme) => {
 const handleSize = (variant: TypographyProps['variant']) => {
   switch (variant) {
     case 'heading-1':
-      return typographyBase.fontSize[5];
+      return typographyBase.fontSize[4];
     case 'heading-2':
-      return typographyBase.fontSize[3];
+      return typographyBase.fontSize[5];
     case 'heading-3':
-      return typographyBase.fontSize[3];
+      return typographyBase.fontSize[6];
     case 'body-1':
-      return typographyBase.fontSize[2];
+      return typographyBase.fontSize[1];
     case 'body-2':
-      return typographyBase.fontSize[1];
+      return typographyBase.fontSize[2];
     case 'body-3':
-      return typographyBase.fontSize[0];
+      return typographyBase.fontSize[3];
     case 'label-1':
-      return typographyBase.fontSize[2];
-    case 'label-2':
       return typographyBase.fontSize[1];
-    case 'label-3':
-      return typographyBase.fontSize[0];
-    default:
+    case 'label-2':
       return typographyBase.fontSize[2];
+    case 'label-3':
+      return typographyBase.fontSize[3];
+    default:
+      return typographyBase.fontSize[1];
   }
 };
 

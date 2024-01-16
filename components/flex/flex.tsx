@@ -32,6 +32,7 @@ interface FlexProps {
   gap?: keyof Spacing;
   maxWidth?: CSSProperties['maxWidth'];
   maxHeight?: CSSProperties['maxHeight'];
+  children?: React.ReactNode;
 }
 
 const Flex = styled.div<FlexProps>`
