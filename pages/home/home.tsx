@@ -1,12 +1,7 @@
-import SEO from '@/components/seo';
+import HomeContent from '../content/home.mdx';
 
-import Intro from './components/intro';
+const Home = () => {
+  return <HomeContent />;
+};
 
-export default function Home() {
-  return (
-    <>
-      <SEO />
-      <Intro />
-    </>
-  );
-}
+export default Home;

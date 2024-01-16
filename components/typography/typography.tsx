@@ -1,4 +1,5 @@
-import { typographyBase } from '@/styles/typography';
+import { typographyBase } from '@/styles';
+import type { Theme } from '@/styles/themes';
 import styled, { css } from 'styled-components';
 
 type TypographyProps = {
@@ -14,14 +15,14 @@ type TypographyProps = {
     | 'label-3';
   color?: 'primary' | 'secondary' | 'tertiary';
   children: string | React.ReactNode;
-  as?: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'label' | 'div' | 'li' | 'a';
 };
 
 const Typography = ({
   children,
   variant,
   color = 'primary',
-  as = 'p',
+  as,
 }: TypographyProps) => {
   return (
     <TypographyContainer variant={variant} color={color} as={as}>
@@ -55,16 +56,16 @@ const handleFamily = (variant: TypographyProps['variant']) => {
   }
 };
 
-const handleColor = (color: TypographyProps['color'], theme: any) => {
+const handleColor = (color: TypographyProps['color'], theme: Theme) => {
   switch (color) {
     case 'primary':
-      return theme.text.primary;
+      return theme.colors.text.primary;
     case 'secondary':
-      return theme.text.secondary;
+      return theme.colors.text.secondary;
     case 'tertiary':
-      return theme.text.tertiary;
+      return theme.colors.text.tertiary;
     default:
-      return theme.text.primary;
+      return theme.colors.text.primary;
   }
 };
 
@@ -73,7 +74,7 @@ const handleSize = (variant: TypographyProps['variant']) => {
     case 'heading-1':
       return typographyBase.fontSize[5];
     case 'heading-2':
-      return typographyBase.fontSize[4];
+      return typographyBase.fontSize[3];
     case 'heading-3':
       return typographyBase.fontSize[3];
     case 'body-1':
@@ -118,42 +119,17 @@ const handleWeight = (variant: TypographyProps['variant']) => {
   }
 };
 
-const handleLineHeight = (variant: TypographyProps['variant']) => {
-  switch (variant) {
-    case 'heading-1':
-      return typographyBase.lineHeight[5];
-    case 'heading-2':
-      return typographyBase.lineHeight[4];
-    case 'heading-3':
-      return typographyBase.lineHeight[3];
-    case 'body-1':
-      return typographyBase.lineHeight[3];
-    case 'body-2':
-      return typographyBase.lineHeight[3];
-    case 'body-3':
-      return typographyBase.lineHeight[2];
-    case 'label-1':
-      return typographyBase.lineHeight[2];
-    case 'label-2':
-      return typographyBase.lineHeight[1];
-    case 'label-3':
-      return typographyBase.lineHeight[0];
-    default:
-      return typographyBase.lineHeight[2];
-  }
-};
-
 const TypographyContainer = styled.p<{
   variant: TypographyProps['variant'];
   color: TypographyProps['color'];
 }>`
   ${({ variant, color, theme }) => css`
-        font-family: ${handleFamily(variant)}};
-        font-size: ${handleSize(variant)};
-        color: ${handleColor(color, theme)};
-        font-weight: ${handleWeight(variant)};
-        line-height: ${handleLineHeight(variant)};
-    `}
+      font-family: ${handleFamily(variant)}};
+      font-size: ${handleSize(variant)};
+      color: ${handleColor(color, theme)};
+      font-weight: ${handleWeight(variant)};
+      line-height: 1.5;
+  `}
 `;
 
 export default Typography;

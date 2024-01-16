@@ -1,21 +1,29 @@
-import Layout from '@/components/layout';
-import ThemeChanger from '@/components/theme-changer/theme-changer';
 import { GlobalStyle } from '@/styles';
-import { greenTheme } from '@/styles/colors';
+import { light } from '@/styles/themes';
+import { MDXProvider } from '@mdx-js/react';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
+
+import components from '../components/mdx-base-components/mdx-base-components';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useState(greenTheme);
+  const theme: DefaultTheme = light;
 
   return (
     <ThemeProvider theme={theme}>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+        />
+      </Head>
       <GlobalStyle />
-      <Layout>
-        <ThemeChanger onValueChange={(value) => setTheme(value)} />
+      <MDXProvider components={components}>
         <Component {...pageProps} />
-      </Layout>
+      </MDXProvider>
     </ThemeProvider>
   );
 }
