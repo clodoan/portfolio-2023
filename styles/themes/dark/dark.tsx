@@ -6,6 +6,7 @@ import typographyBase from '@/styles/typography-base';
 import { Theme } from '../themes-type';
 
 const theme: Theme = {
+  name: 'dark',
   spacing: {
     ...spacing,
   },

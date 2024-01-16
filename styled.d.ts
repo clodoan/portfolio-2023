@@ -10,10 +10,12 @@ import {
   ShadowColor,
 } from './styles/colors/colors-types';
 import { Spacing } from './styles/spacing';
+import { ThemeNames } from './styles/themes/themes-type';
 import { TypographyBaseProps } from './styles/typography-base';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    name: ThemeNames;
     colors: ColorTheme;
     spacing: Spacing;
     typography: TypographyBaseProps;

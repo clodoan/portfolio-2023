@@ -8,9 +8,6 @@ const SEO = () => {
   const themedFavicon = [
     ['light', '🌤️'],
     ['dark', '🌝'],
-    ['green', '🌿'],
-    ['pink', '🦩'],
-    ['purple', '🍇'],
   ];
 
   const favicon = themedFavicon.find((item) => item[0] === themeName);
