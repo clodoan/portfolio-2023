@@ -1,5 +1,5 @@
 import { GlobalStyle } from '@/styles';
-import { dark, light } from '@/styles/themes';
+import { dark } from '@/styles/themes';
 import { MDXProvider } from '@mdx-js/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -14,9 +14,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
+          href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
         />
       </Head>
       <GlobalStyle />

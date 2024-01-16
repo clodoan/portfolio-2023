@@ -13,7 +13,15 @@ interface FlexProps {
   width?: CSSProperties['width'];
   height?: CSSProperties['height'];
   margin?: keyof Spacing;
+  marginTop?: keyof Spacing;
+  marginRight?: keyof Spacing;
+  marginBottom?: keyof Spacing;
+  marginLeft?: keyof Spacing;
   padding?: keyof Spacing;
+  paddingTop?: keyof Spacing;
+  paddingRight?: keyof Spacing;
+  paddingBottom?: keyof Spacing;
+  paddingLeft?: keyof Spacing;
   backgroundColor?: CSSProperties['backgroundColor'];
   borderRadius?: keyof BorderRadius;
   border?: CSSProperties['border'];
@@ -46,7 +54,15 @@ const Flex = styled.div<FlexProps>`
     width,
     height,
     margin,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
     padding,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
     borderRadius,
     backgroundColor,
     border,
@@ -75,7 +91,17 @@ const Flex = styled.div<FlexProps>`
     width: ${width || 'undefined'};
     height: ${height || 'undefined'};
     margin: ${margin ? theme.spacing[margin] : 'undefined'};
+    margin-top: ${marginTop ? theme.spacing[marginTop] : 'undefined'};
+    margin-right: ${marginRight ? theme.spacing[marginRight] : 'undefined'};
+    margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : 'undefined'};
+    margin-left: ${marginLeft ? theme.spacing[marginLeft] : 'undefined'};
     padding: ${padding ? theme.spacing[padding] : 'undefined'}
+    padding-top: ${paddingTop ? theme.spacing[paddingTop] : 'undefined'};
+    padding-right: ${paddingRight ? theme.spacing[paddingRight] : 'undefined'};
+    padding-bottom: ${
+      paddingBottom ? theme.spacing[paddingBottom] : 'undefined'
+    };
+    padding-left: ${paddingLeft ? theme.spacing[paddingLeft] : 'undefined'};
     border-radius: ${
       borderRadius ? theme.border.radius[borderRadius] : 'undefined'
     };

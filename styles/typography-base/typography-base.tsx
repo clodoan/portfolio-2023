@@ -2,20 +2,13 @@ const FACTOR = 1.25;
 
 const typographyBase = {
   fontFamily: {
-    body: "'Rubik', 'sans-serif'",
-    heading: "'Rubik', 'sans-serif'",
+    body: "'Mulish', 'sans-serif'",
+    heading: "'Mulish', 'sans-serif'",
   },
   fontWeight: {
-    heading: {
-      bold: 700,
-      semibold: 600,
-      regular: 400,
-    },
-    body: {
-      bold: 700,
-      semibold: 600,
-      regular: 500,
-    },
+    bold: 600,
+    semibold: 500,
+    regular: 400,
   },
   fontSize: {
     1: '0.875rem',

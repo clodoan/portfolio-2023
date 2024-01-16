@@ -97,25 +97,25 @@ const handleSize = (variant: TypographyProps['variant']) => {
 const handleWeight = (variant: TypographyProps['variant']) => {
   switch (variant) {
     case 'heading-1':
-      return typographyBase.fontWeight.heading.bold;
+      return typographyBase.fontWeight.semibold;
     case 'heading-2':
-      return typographyBase.fontWeight.heading.bold;
+      return typographyBase.fontWeight.semibold;
     case 'heading-3':
-      return typographyBase.fontWeight.heading.bold;
+      return typographyBase.fontWeight.semibold;
     case 'body-1':
-      return typographyBase.fontWeight.body.regular;
+      return typographyBase.fontWeight.regular;
     case 'body-2':
-      return typographyBase.fontWeight.body.regular;
+      return typographyBase.fontWeight.regular;
     case 'body-3':
-      return typographyBase.fontWeight.body.regular;
+      return typographyBase.fontWeight.regular;
     case 'label-1':
-      return typographyBase.fontWeight.body.semibold;
+      return typographyBase.fontWeight.semibold;
     case 'label-2':
-      return typographyBase.fontWeight.body.semibold;
+      return typographyBase.fontWeight.semibold;
     case 'label-3':
-      return typographyBase.fontWeight.body.semibold;
+      return typographyBase.fontWeight.semibold;
     default:
-      return typographyBase.fontWeight.body.regular;
+      return typographyBase.fontWeight.regular;
   }
 };
 
