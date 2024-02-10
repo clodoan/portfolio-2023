@@ -6,12 +6,15 @@ export const lightTheme: ColorTheme = {
     primary: '#161616',
     secondary: '#1c1c1c',
     tertiary: '#232323',
+    accent: '#ff6600',
+    quinary: '#f3f4f6',
   },
   background: {
     primary: '#f3f4f6',
     secondary: '#e5e7eb',
     tertiary: '#d1d5db',
     transparent: 'transparent',
+    accent: '#ff6600',
   },
   border: {
     primary: '#d4d5d7',
@@ -42,12 +45,15 @@ export const darkTheme: ColorTheme = {
     primary: '#ededed',
     secondary: '#a0a0a0',
     tertiary: '##7e7e7e',
+    accent: '#e65c00',
+    quinary: '#161616',
   },
   background: {
     primary: '#161616',
     secondary: '#1c1c1c',
     tertiary: '#232323',
     transparent: 'transparent',
+    accent: '#e65c00',
   },
   border: {
     primary: '#1f2937',

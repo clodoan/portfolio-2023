@@ -4,19 +4,11 @@ export type TypographyBaseProps = {
     heading: string;
   };
   fontWeight: {
-    heading: {
-      bold: number;
-      semibold: number;
-      regular: number;
-    };
-    body: {
-      bold: number;
-      semibold: number;
-      regular: number;
-    };
+    bold: number;
+    semibold: number;
+    regular: number;
   };
   fontSize: {
-    0: string;
     1: string;
     2: string;
     3: string;

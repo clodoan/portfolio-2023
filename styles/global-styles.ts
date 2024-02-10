@@ -4,6 +4,9 @@ import { DefaultTheme } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     ${({ theme }) => css`
+      :root {
+        --max-content-width-desktop: 420px;
+      }
       * {
         box-sizing: border-box;
         margin: 0;

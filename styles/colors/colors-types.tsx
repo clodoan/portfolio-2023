@@ -3,12 +3,15 @@ export type BackgroundColor = {
   secondary: string;
   tertiary: string;
   transparent: string;
+  accent?: string;
 };
 
 export type TextColor = {
   primary: string;
   secondary: string;
   tertiary: string;
+  accent: string;
+  quinary: string;
 };
 
 export type BorderColor = {
