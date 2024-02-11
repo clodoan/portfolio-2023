@@ -3,7 +3,6 @@ import Typography from '@/components/typography';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import Typewriter from 'typewriter-effect';
 
 import ShowMoreButton from './show-more-button';
 
@@ -19,9 +18,27 @@ const Home = () => {
     visible: {
       opacity: 1,
       filter: 'blur(0px)',
-      transition: { duration: 0.3 },
+
+      transition: {
+        duration: 0.3,
+        when: 'beforeChildren',
+      },
     },
     exit: { opacity: 0, filter: 'blur(10px)' },
+  };
+
+  const containerTextAppearDisappearVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: {
+      opacity: 1,
+      height: 'auto',
+
+      transition: {
+        duration: 0.3,
+        when: 'beforeChildren',
+      },
+    },
+    exit: { opacity: 0, y: 0 },
   };
 
   return (
@@ -38,27 +55,33 @@ const Home = () => {
           onClick={handleShowMoreClick}
           area="description-more"
         />
-        <AnimatePresence>
-          {personalInfoOpen && (
-            <GridAssigner
-              area="description-extra"
-              variants={textAppearDisappearVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              layout
-              id="description-extra"
-            >
-              <Typography variant="body-2">
-                'Mollit nulla labore nulla non magna aute ut dolor incididunt
-                irure labore. Culpa incididunt duis tempor ullamco pariatur qui
-                irure. Minim proident eiusmod non consequat aliquip ipsum
-                pariatur do aliquip excepteur nulla. Veniam exercitation
-                deserunt qui sit. Aute duis proident dolor ullamco irure.',
-              </Typography>
-            </GridAssigner>
-          )}
-        </AnimatePresence>
+        <AppearContainer
+          initial="hidden"
+          animate={personalInfoOpen ? 'visible' : 'hidden'}
+          variants={containerTextAppearDisappearVariants}
+        >
+          <AnimatePresence>
+            {personalInfoOpen && (
+              <GridAssigner
+                area="description-extra"
+                variants={textAppearDisappearVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                layout
+                id="description-extra"
+              >
+                <Typography variant="body-2">
+                  'Mollit nulla labore nulla non magna aute ut dolor incididunt
+                  irure labore. Culpa incididunt duis tempor ullamco pariatur
+                  qui irure. Minim proident eiusmod non consequat aliquip ipsum
+                  pariatur do aliquip excepteur nulla. Veniam exercitation
+                  deserunt qui sit. Aute duis proident dolor ullamco irure.',
+                </Typography>
+              </GridAssigner>
+            )}
+          </AnimatePresence>
+        </AppearContainer>
       </Grid>
     </Container>
   );
@@ -82,6 +105,10 @@ const GridAssigner = styled(motion.div)<{ area: string }>`
 
 const Container = styled(Flex)`
   min-height: 100vh;
+`;
+
+const AppearContainer = styled(motion.div)`
+  overflow: hidden;
 `;
 
 export default Home;
