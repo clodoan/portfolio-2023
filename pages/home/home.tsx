@@ -25,8 +25,8 @@ const Home = () => {
   };
 
   return (
-    <Flex alignItems="center" justifyContent="center" overflow="hidden">
-      <Grid>
+    <Container alignItems="center" justifyContent="center" overflow="hidden">
+      <Grid layout>
         <GridAssigner area="name">
           <Typography variant="heading-1">Claudio Angrigiani</Typography>
         </GridAssigner>
@@ -46,6 +46,8 @@ const Home = () => {
               initial="hidden"
               animate="visible"
               exit="exit"
+              layout
+              id="description-extra"
             >
               <Typography variant="body-2">
                 'Mollit nulla labore nulla non magna aute ut dolor incididunt
@@ -58,11 +60,11 @@ const Home = () => {
           )}
         </AnimatePresence>
       </Grid>
-    </Flex>
+    </Container>
   );
 };
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
   display: grid;
   grid-template-columns: var(--max-content-width-desktop) 24px;
   grid-template-areas:
@@ -76,6 +78,10 @@ const GridAssigner = styled(motion.div)<{ area: string }>`
     grid-area: ${area};
     max-width: 100%;
   `}
+`;
+
+const Container = styled(Flex)`
+  min-height: 100vh;
 `;
 
 export default Home;
