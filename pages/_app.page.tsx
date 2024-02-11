@@ -3,7 +3,7 @@ import { light } from '@/styles/themes';
 import { MDXProvider } from '@mdx-js/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, css } from 'styled-components';
 import { DefaultTheme } from 'styled-components';
 
 import components from '../components/mdx-base-components/mdx-base-components';

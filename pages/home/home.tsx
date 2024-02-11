@@ -1,9 +1,11 @@
 import Flex from '@/components/flex';
+import Footer from '@/components/footer';
 import Typography from '@/components/typography';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
+import homeContent from './home.content';
 import ShowMoreButton from './show-more-button';
 
 const Home = () => {
@@ -42,13 +44,18 @@ const Home = () => {
   };
 
   return (
-    <Container alignItems="center" justifyContent="center" overflow="hidden">
+    <Container
+      alignItems="center"
+      justifyContent="center"
+      overflow="hidden"
+      direction="column"
+    >
       <Grid layout>
         <GridAssigner area="name">
-          <Typography variant="heading-1">Claudio Angrigiani</Typography>
+          <Typography variant="heading-1">{homeContent.title}</Typography>
         </GridAssigner>
         <Typography variant="body-2">
-          Crafting delightful software from design to code.
+          {homeContent.about.description}
         </Typography>
         <ShowMoreButton
           open={personalInfoOpen}
@@ -72,28 +79,29 @@ const Home = () => {
                 id="description-extra"
               >
                 <Typography variant="body-2">
-                  'Mollit nulla labore nulla non magna aute ut dolor incididunt
-                  irure labore. Culpa incididunt duis tempor ullamco pariatur
-                  qui irure. Minim proident eiusmod non consequat aliquip ipsum
-                  pariatur do aliquip excepteur nulla. Veniam exercitation
-                  deserunt qui sit. Aute duis proident dolor ullamco irure.',
+                  {homeContent.about.extra}
                 </Typography>
               </GridAssigner>
             )}
           </AnimatePresence>
         </AppearContainer>
       </Grid>
+      <Footer />
     </Container>
   );
 };
 
 const Grid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: var(--max-content-width-desktop) 24px;
-  grid-template-areas:
-    'name name'
-    'description description-more'
-    'description-extra description-more';
+  ${({ theme }) => css`
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--max-content-width-desktop) 24px;
+    grid-column-gap: ${theme.spacing[3]};
+    grid-template-areas:
+      'name name'
+      'description description-more'
+      'description-extra description-more';
+  `}
 `;
 
 const GridAssigner = styled(motion.div)<{ area: string }>`

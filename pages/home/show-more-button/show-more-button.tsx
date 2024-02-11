@@ -38,7 +38,7 @@ const ButtonContainer = styled.button<{ area?: string }>`
     justify-content: center;
     grid-area: ${area};
     border-radius: 6px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.2s ease-in-out;
     color: ${theme.colors.text.tertiary};
     height: ${theme.spacing[5]};
     width: ${theme.spacing[5]};
