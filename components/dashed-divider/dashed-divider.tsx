@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { DASH_WIDTH } from '../../pages/constants';
-
 type DashedDividerProps = {
   area?: string;
 };

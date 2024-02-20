@@ -1,4 +1,4 @@
-const homeContent = {
+export const content = {
   title: 'Claudio Angrigiani',
   about: {
     description: 'Crafting delightful software from design to code.',
@@ -97,5 +97,3 @@ const homeContent = {
     },
   ],
 };
-
-export default homeContent;

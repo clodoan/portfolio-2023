@@ -6,12 +6,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { Fragment, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import { DASH_WIDTH } from '../constants';
-import AppearContainer from './appear-container';
-import homeContent from './home.content';
-import ShowMoreButton from './show-more-button';
-import Role from './work-timeline/role';
-import RoleAndPlace from './work-timeline/role/role';
+import { content } from '../../utils/content/home.content';
+import AppearContainer from './components/appear-container';
+import ShowMoreButton from './components/show-more-button';
+import Role from './components/work-timeline/role';
 
 enum Sections {
   ABOUT = 'about',
@@ -48,12 +46,10 @@ const Home = () => {
     >
       <Grid layout>
         <GridAssigner area="name">
-          <Typography variant="heading-1">{homeContent.title}</Typography>
+          <Typography variant="heading-1">{content.title}</Typography>
         </GridAssigner>
         <Fragment>
-          <Typography variant="body-2">
-            {homeContent.about.description}
-          </Typography>
+          <Typography variant="body-2">{content.about.description}</Typography>
           <ShowMoreButton
             open={findSectionState(Sections.ABOUT)?.isOpen ?? false}
             onClick={() => handleShowMore(Sections.ABOUT)}
@@ -65,7 +61,7 @@ const Home = () => {
           >
             <Flex paddingBottom={2}>
               <Typography variant="body-2" color="tertiary">
-                {homeContent.about.extra}
+                {content.about.extra}
               </Typography>
             </Flex>
           </AppearContainer>
@@ -74,13 +70,13 @@ const Home = () => {
           <GridAssigner area="work">
             <Flex direction="row" gap={1}>
               <Typography variant="label-2" color="secondary">
-                {homeContent.work[0].roles[0].title}
+                {content.work[0].roles[0].title}
               </Typography>
               <Typography variant="body-2" color="secondary">
                 at
               </Typography>
               <Typography variant="label-2" color="secondary">
-                {homeContent.work[0].company}
+                {content.work[0].company}
               </Typography>
             </Flex>
           </GridAssigner>
@@ -94,7 +90,7 @@ const Home = () => {
             area="work-extra"
           >
             <GridAssigner area="work-extra">
-              {homeContent.work.map((workPlace, index) => (
+              {content.work.map((workPlace, index) => (
                 <Flex key={index} direction="column" gap={1} marginTop={2}>
                   <Typography variant="label-1">{workPlace.company}</Typography>
                   {workPlace.roles.map((role, roleIndex) => (
