@@ -9,7 +9,7 @@ type ShowMoreButtonProps = {
 };
 const ShowMoreButton = ({ open, onClick, area }: ShowMoreButtonProps) => {
   return (
-    <ButtonContainer onClick={onClick} as="button" area={area}>
+    <ButtonContainer onClick={onClick} as="button" area={area} tabIndex={0}>
       <svg viewBox="0 0 24 24" width="24" height="24">
         <path
           d={open ? 'M 6 12 L 18 12' : 'M 6 12 L 18 12 M 12 6 L 12 18'}
@@ -38,13 +38,15 @@ const ButtonContainer = styled.button<{ area?: string }>`
     justify-content: center;
     grid-area: ${area};
     border-radius: 6px;
-    transition: all 0.2s ease-in-out;
+
     color: ${theme.colors.text.tertiary};
     height: ${theme.spacing[5]};
     width: ${theme.spacing[5]};
     background-color: ${theme.colors.background.primary};
-    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.05),
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.05),
       0px 1px 2px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       background-color: ${theme.colors.background.primary};
@@ -57,6 +59,13 @@ const ButtonContainer = styled.button<{ area?: string }>`
       background-color: ${theme.colors.background.primary};
       color: ${theme.colors.text.primary};
       box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+    &:focus-visible {
+      outline: 1px solid ${theme.colors.text.accent};
     }
   `}
 `;

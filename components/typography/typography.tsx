@@ -10,9 +10,11 @@ type TypographyProps = {
     | 'body-1'
     | 'body-2'
     | 'body-3'
+    | 'body-4'
     | 'label-1'
     | 'label-2'
-    | 'label-3';
+    | 'label-3'
+    | 'label-4';
   color?: 'primary' | 'secondary' | 'tertiary';
   children: string | React.ReactNode;
   as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'label' | 'div' | 'li' | 'a';
@@ -39,18 +41,6 @@ const handleFamily = (variant: TypographyProps['variant']) => {
       return typographyBase.fontFamily.heading;
     case 'heading-3':
       return typographyBase.fontFamily.heading;
-    case 'body-1':
-      return typographyBase.fontFamily.body;
-    case 'body-2':
-      return typographyBase.fontFamily.body;
-    case 'body-3':
-      return typographyBase.fontFamily.body;
-    case 'label-1':
-      return typographyBase.fontFamily.body;
-    case 'label-2':
-      return typographyBase.fontFamily.body;
-    case 'label-3':
-      return typographyBase.fontFamily.body;
     default:
       return typographyBase.fontFamily.body;
   }

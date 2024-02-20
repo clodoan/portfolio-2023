@@ -37,9 +37,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
             ${theme.colors.background.primary},
             ${theme.colors.background.secondary}
           );
-
-        background-repeat: repeat, no-repeat;
+        background-repeat: repeat;
         background-attachment: fixed;
+        background-position: center center;
+        background-size: 200px;
         background-blend-mode: overlay;
       }
       ::selection {
