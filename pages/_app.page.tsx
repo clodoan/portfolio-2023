@@ -20,6 +20,10 @@ export default function App({ Component, pageProps }: AppProps) {
           href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😎</text></svg>"
+        />
       </Head>
       <GlobalStyle />
       <MDXProvider components={components}>
