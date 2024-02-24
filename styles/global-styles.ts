@@ -41,7 +41,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         background-attachment: fixed;
         background-position: center center;
         background-size: 200px;
-        background-blend-mode: overlay;
       }
       ::selection {
         background: ${theme.colors.background.accent};
