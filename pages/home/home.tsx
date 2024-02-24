@@ -1,10 +1,9 @@
-import DashedDivider from '@/components/dashed-divider/dashed-divider';
 import Flex from '@/components/flex';
 import Footer from '@/components/footer';
 import Typography from '@/components/typography';
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { Fragment, useState } from 'react';
-import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import React, { Fragment, useMemo, useState } from 'react';
+import styled, { css, useTheme } from 'styled-components';
 import media from 'styled-media-query';
 
 import { content } from '../../utils/content/home.content';
@@ -19,7 +18,7 @@ enum Sections {
   PROJECTS = 'projects',
 }
 
-const Home = () => {
+function Home() {
   const [sectionStates, setSectionStates] = useState([
     { id: 1, section: Sections.ABOUT, isOpen: false },
     { id: 2, section: Sections.WORK, isOpen: false },
@@ -36,8 +35,11 @@ const Home = () => {
     );
   };
 
-  const findSectionState = (sectionName: Sections) =>
-    sectionStates.find((section) => section.section === sectionName);
+  const findSectionState = useMemo(
+    () => (sectionName: Sections) =>
+      sectionStates.find((section) => section.section === sectionName),
+    [sectionStates],
+  );
 
   return (
     <Container
@@ -103,7 +105,7 @@ const Home = () => {
             isVisible={findSectionState(Sections.WORK)?.isOpen ?? false}
             area="work-extra"
           >
-            <GridAssigner area="work-extra">
+            <GridAssigner area="work-extra" paddingBottom="80px">
               {content.work.map((workPlace, index) => (
                 <Flex key={index} direction="column" gap={1} marginTop={2}>
                   <Typography variant="label-1">{workPlace.company}</Typography>
@@ -124,7 +126,7 @@ const Home = () => {
       <Footer />
     </Container>
   );
-};
+}
 
 const Grid = styled(motion.div)`
   ${({ theme }) => css`
@@ -151,13 +153,19 @@ const Grid = styled(motion.div)`
 `;
 
 const Container = styled(Flex)`
-  min-height: 100vh;
+  ${({ theme }) => css`
+    min-height: 100vh;
+  `}
 `;
 
-const GridAssigner = styled(motion.div)<{ area: string }>`
-  ${({ area }) => css`
+const GridAssigner = styled(motion.div)<{
+  area: string;
+  paddingBottom?: string;
+}>`
+  ${({ theme, area, paddingBottom }) => css`
     grid-area: ${area};
     max-width: 100%;
+    padding-bottom: ${paddingBottom ? paddingBottom : 0};
   `}
 `;
 
