@@ -135,6 +135,7 @@ const Grid = styled(motion.div)`
     padding: ${theme.spacing[3]};
 
     ${media.greaterThan('medium')`
+      width: fit-content;
       display: grid;
       grid-template-columns: var(--max-content-width-desktop) 24px;
       grid-template-rows: auto;
