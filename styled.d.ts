@@ -1,43 +1,24 @@
+import { typography } from '@/components/typography';
+import { borderRadius } from '@/styles';
 import 'styled-components';
+
+import { Border } from './styles/border/border-types';
+import { BackgroundColor, BorderColor, TextColor } from './styles/colors';
+import {
+  ButtonColor,
+  ColorTheme,
+  ShadowColor,
+} from './styles/colors/colors-types';
+import { Spacing } from './styles/spacing';
+import { ThemeNames } from './styles/themes/themes-type';
+import { TypographyBaseProps } from './styles/typography-base';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    name: string;
-    background: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
-      transparent: string;
-    };
-    text: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
-    };
-    border: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
-    };
-    shadow: {
-      1: string;
-      2: string;
-      3: string;
-    };
-    button: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
-    };
-    link: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
-    };
-    input: {
-      primary: string;
-      secondary: string;
-      tertiary: string;
-    };
+    name: ThemeNames;
+    colors: ColorTheme;
+    spacing: Spacing;
+    typography: TypographyBaseProps;
+    border: Border;
   }
 }

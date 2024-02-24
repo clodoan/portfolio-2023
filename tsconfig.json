@@ -15,9 +15,12 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@themes/*": ["./styles/themes/*"],
+      "@components": ["./components"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "styles/themes/light"],
   "exclude": ["node_modules"]
 }
