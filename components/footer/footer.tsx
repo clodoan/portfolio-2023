@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 
 import Flex from '../flex';
 import { TwitterLogo } from './social-icons';
-import { LinkedInLogo } from './social-icons';
+import { ReadCVIcon } from './social-icons/social-icons';
 
 const footerLinks = [
   {
@@ -14,8 +14,8 @@ const footerLinks = [
   },
   {
     name: 'linkedin',
-    href: 'https://x.com/clodoan',
-    icon: <LinkedInLogo />,
+    href: 'https://read.cv/claudio',
+    icon: <ReadCVIcon />,
   },
 ];
 
