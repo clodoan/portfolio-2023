@@ -5,10 +5,12 @@ import Typography from '@/components/typography';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { Fragment, useState } from 'react';
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 import { content } from '../../utils/content/home.content';
 import AppearContainer from './components/appear-container';
-import ShowMoreButton from './components/show-more-button';
+import ShowMoreDesktopButton from './components/show-more-desktop-button';
+import ShowMoreMobileButton from './components/show-more-mobile-button/show-more-mobile-button';
 import Role from './components/work-timeline/role';
 
 enum Sections {
@@ -50,10 +52,16 @@ const Home = () => {
         </GridAssigner>
         <Fragment>
           <Typography variant="body-2">{content.about.description}</Typography>
-          <ShowMoreButton
+          <ShowMoreDesktopButton
             open={findSectionState(Sections.ABOUT)?.isOpen ?? false}
             onClick={() => handleShowMore(Sections.ABOUT)}
             area="description-more"
+          />
+          <ShowMoreMobileButton
+            open={findSectionState(Sections.ABOUT)?.isOpen ?? false}
+            onClick={() => handleShowMore(Sections.ABOUT)}
+            showMoreText="Show more about me"
+            showLessText="Show less about me"
           />
           <AppearContainer
             isVisible={findSectionState(Sections.ABOUT)?.isOpen}
@@ -80,10 +88,16 @@ const Home = () => {
               </Typography>
             </Flex>
           </GridAssigner>
-          <ShowMoreButton
+          <ShowMoreDesktopButton
             open={findSectionState(Sections.WORK)?.isOpen ?? false}
             onClick={() => handleShowMore(Sections.WORK)}
             area="work-more"
+          />
+          <ShowMoreMobileButton
+            open={findSectionState(Sections.WORK)?.isOpen ?? false}
+            onClick={() => handleShowMore(Sections.WORK)}
+            showMoreText="Show more work experience"
+            showLessText="Show less work experience"
           />
           <AppearContainer
             isVisible={findSectionState(Sections.WORK)?.isOpen ?? false}
@@ -115,16 +129,23 @@ const Home = () => {
 const Grid = styled(motion.div)`
   ${({ theme }) => css`
     position: relative;
-    display: grid;
-    grid-template-columns: var(--max-content-width-desktop) 24px;
-    grid-template-rows: auto;
-    grid-column-gap: ${theme.spacing[3]};
-    grid-template-areas:
-      'name name'
-      'description description-more'
-      'description-extra description-more'
-      'work work-more';
-      'work-extra work-extra'
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: ${theme.spacing[3]};
+
+    ${media.greaterThan('medium')`
+      display: grid;
+      grid-template-columns: var(--max-content-width-desktop) 24px;
+      grid-template-rows: auto;
+      grid-column-gap: ${theme.spacing[3]};
+      grid-template-areas:
+        'name name'
+        'description description-more'
+        'description-extra description-more'
+        'work work-more'
+        'work-extra work-extra';
+    `}
   `}
 `;
 

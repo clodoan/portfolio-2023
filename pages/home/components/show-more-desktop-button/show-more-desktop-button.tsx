@@ -1,13 +1,18 @@
 import { MinusCircledIcon, PlusCircledIcon } from '@radix-ui/react-icons';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 type ShowMoreButtonProps = {
   open: boolean;
   onClick: () => void;
   area?: string;
 };
-const ShowMoreButton = ({ open, onClick, area }: ShowMoreButtonProps) => {
+const ShowMoreDesktopButton = ({
+  open,
+  onClick,
+  area,
+}: ShowMoreButtonProps) => {
   return (
     <ButtonContainer onClick={onClick} as="button" area={area} tabIndex={0}>
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -32,13 +37,12 @@ const ShowMoreButton = ({ open, onClick, area }: ShowMoreButtonProps) => {
 const ButtonContainer = styled.button<{ area?: string }>`
   ${({ theme, area }) => css`
     all: unset;
+    display: none;
     cursor: pointer;
-    display: flex;
     align-items: center;
     justify-content: center;
     grid-area: ${area};
     border-radius: 6px;
-
     color: ${theme.colors.text.tertiary};
     height: ${theme.spacing[5]};
     width: ${theme.spacing[5]};
@@ -64,10 +68,15 @@ const ButtonContainer = styled.button<{ area?: string }>`
     &:focus:not(:focus-visible) {
       outline: none;
     }
+
     &:focus-visible {
       outline: 1px solid ${theme.colors.text.accent};
     }
+
+    ${media.greaterThan('medium')`
+      display: flex;
+    `}
   `}
 `;
 
-export default ShowMoreButton;
+export default ShowMoreDesktopButton;
