@@ -8,7 +8,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { content } from '../../utils/content/home.content';
-import Role from './components/work-timeline/role';
+import Role from './components/role';
 
 function Home() {
   return (
