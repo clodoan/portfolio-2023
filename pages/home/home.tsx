@@ -32,7 +32,7 @@ function Home() {
           {content.about}
         </Typography>
       </Flex>
-      <Flex gap={2} direction="column" width="100%">
+      <Flex gap={2} direction="column" width="100%" marginBottom={11}>
         {content.work.map((workPlace, index) => (
           <Flex
             key={index}
