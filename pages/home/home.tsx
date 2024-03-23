@@ -4,18 +4,11 @@ import Typography from '@/components/typography';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React, { Fragment, useMemo, useState } from 'react';
-import styled, { css, useTheme } from 'styled-components';
-import media from 'styled-media-query';
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 import { content } from '../../utils/content/home.content';
 import Role from './components/work-timeline/role';
-
-enum Sections {
-  ABOUT = 'about',
-  WORK = 'work',
-  PROJECTS = 'projects',
-}
 
 function Home() {
   return (
@@ -24,6 +17,9 @@ function Home() {
       justifyContent="center"
       overflow="hidden"
       direction="column"
+      initial={{ opacity: 0, filter: 'blur(10px)' }}
+      animate={{ opacity: 1, filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
     >
       <Flex direction="column" marginBottom={11}>
         <Typography variant="label-2">{content.title}</Typography>
@@ -69,6 +65,19 @@ function Home() {
   );
 }
 
+const Container = styled(motion(Flex))`
+  ${({ theme }) => css`
+    min-height: 100vh;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0 ${theme.spacing[6]};
+
+    & > * {
+      width: 100%;
+    }
+  `}
+`;
+
 const StyledLink = styled(Link)`
   ${({ theme }) => css`
     display: flex;
@@ -85,19 +94,6 @@ const StyledLink = styled(Link)`
           color: ${theme.colors.link.hover};
         }
       }
-    }
-  `}
-`;
-
-const Container = styled(Flex)`
-  ${({ theme }) => css`
-    min-height: 100vh;
-    max-width: 580px;
-    margin: 0 auto;
-    padding: 0 ${theme.spacing[6]};
-
-    & > * {
-      width: 100%;
     }
   `}
 `;
