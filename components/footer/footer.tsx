@@ -21,11 +21,11 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <Container
+    <Flex
       as="footer"
       gap={3}
       alignItems="start"
-      justifyContent="end"
+      justifyContent="start"
       width="100%"
     >
       {footerLinks.map((link) => (
@@ -33,18 +33,9 @@ const Footer = () => {
           {link.icon}
         </ButtonContainer>
       ))}
-    </Container>
+    </Flex>
   );
 };
-
-const Container = styled(Flex)`
-  ${({ theme }) => css`
-    position: fixed;
-    padding: ${theme.spacing[3]};
-    bottom: ${theme.spacing[5]};
-    right: ${theme.spacing[5]};
-  `}
-`;
 
 const ButtonContainer = styled(Link)`
   ${({ theme }) => css`
@@ -62,11 +53,13 @@ const ButtonContainer = styled(Link)`
     box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.05),
       0px 1px 2px rgba(0, 0, 0, 0.1);
 
-    &:hover {
-      background-color: ${theme.colors.background.primary};
-      color: ${theme.colors.text.accent};
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.05),
-        0px 2px 2px rgba(0, 0, 0, 0.05), 0px 3px 3px rgba(255, 165, 0, 0.1);
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${theme.colors.background.primary};
+        color: ${theme.colors.text.accent};
+        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.05),
+          0px 2px 2px rgba(0, 0, 0, 0.05), 0px 3px 3px rgba(255, 165, 0, 0.1);
+      }
     }
 
     &:active {
