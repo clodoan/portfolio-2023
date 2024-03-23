@@ -54,7 +54,7 @@ export const content: Content = {
       companyWeb: 'https://hidorothy.com',
       roles: [
         {
-          title: 'Co-founder & Head of Product and Design',
+          title: 'Co-founder & Head of Product',
           from: '2019',
           to: '2021',
         },
