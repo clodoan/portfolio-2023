@@ -23,8 +23,14 @@ export type BorderColor = {
 
 export type ButtonColor = {
   primary: string;
-  secondary: string;
-  tertiary: string;
+  secondary?: string;
+  tertiary?: string;
+};
+
+export type LinkColor = {
+  default: string;
+  hover?: string;
+  active?: string;
 };
 
 export type ShadowColor = {
@@ -39,6 +45,6 @@ export type ColorTheme = {
   background: BackgroundColor;
   border: BorderColor;
   button: ButtonColor;
-  link: ButtonColor;
+  link: LinkColor;
   shadow: ShadowColor;
 };

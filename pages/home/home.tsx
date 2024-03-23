@@ -1,15 +1,14 @@
 import Flex from '@/components/flex';
 import Footer from '@/components/footer';
 import Typography from '@/components/typography';
+import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import React, { Fragment, useMemo, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 import media from 'styled-media-query';
 
 import { content } from '../../utils/content/home.content';
-import AppearContainer from './components/appear-container';
-import ShowMoreDesktopButton from './components/show-more-desktop-button';
-import ShowMoreMobileButton from './components/show-more-mobile-button/show-more-mobile-button';
 import Role from './components/work-timeline/role';
 
 enum Sections {
@@ -19,28 +18,6 @@ enum Sections {
 }
 
 function Home() {
-  const [sectionStates, setSectionStates] = useState([
-    { id: 1, section: Sections.ABOUT, isOpen: false },
-    { id: 2, section: Sections.WORK, isOpen: false },
-    { id: 3, section: Sections.PROJECTS, isOpen: false },
-  ]);
-
-  const handleShowMore = (sectionName: string) => {
-    setSectionStates(
-      sectionStates.map((section) =>
-        section.section === sectionName
-          ? { ...section, isOpen: !section.isOpen }
-          : section,
-      ),
-    );
-  };
-
-  const findSectionState = useMemo(
-    () => (sectionName: Sections) =>
-      sectionStates.find((section) => section.section === sectionName),
-    [sectionStates],
-  );
-
   return (
     <Container
       alignItems="center"
@@ -48,124 +25,80 @@ function Home() {
       overflow="hidden"
       direction="column"
     >
-      <Grid layout>
-        <GridAssigner area="name">
-          <Typography variant="heading-1">{content.title}</Typography>
-        </GridAssigner>
-        <Fragment>
-          <Typography variant="body-2">{content.about.description}</Typography>
-          <ShowMoreDesktopButton
-            open={findSectionState(Sections.ABOUT)?.isOpen ?? false}
-            onClick={() => handleShowMore(Sections.ABOUT)}
-            area="description-more"
-          />
-          <ShowMoreMobileButton
-            open={findSectionState(Sections.ABOUT)?.isOpen ?? false}
-            onClick={() => handleShowMore(Sections.ABOUT)}
-            showMoreText="Show more about me"
-            showLessText="Show less about me"
-          />
-          <AppearContainer
-            isVisible={findSectionState(Sections.ABOUT)?.isOpen}
-            area="description-extra"
+      <Flex direction="column" marginBottom={11}>
+        <Typography variant="label-2">{content.title}</Typography>
+        <Typography variant="label-2" color="secondary">
+          {content.work[0].roles[0].title}
+        </Typography>
+      </Flex>
+      <Flex marginBottom={11}>
+        <Typography variant="body-2" color="secondary">
+          {content.about}
+        </Typography>
+      </Flex>
+      <Flex gap={2} direction="column" width="100%">
+        {content.work.map((workPlace, index) => (
+          <Flex
+            key={index}
+            direction="column"
+            gap={1}
+            marginTop={2}
+            width="100%"
           >
-            <Flex paddingBottom={2}>
-              <Typography variant="body-2" color="tertiary">
-                {content.about.extra}
-              </Typography>
-            </Flex>
-          </AppearContainer>
-        </Fragment>
-        <Fragment>
-          <GridAssigner area="work">
-            <Flex direction="row" gap={1}>
-              <Typography variant="label-2" color="secondary">
-                {content.work[0].roles[0].title}
-              </Typography>
-              <Typography variant="body-2" color="secondary">
-                at
-              </Typography>
-              <Typography variant="label-2" color="secondary">
-                {content.work[0].company}
-              </Typography>
-            </Flex>
-          </GridAssigner>
-          <ShowMoreDesktopButton
-            open={findSectionState(Sections.WORK)?.isOpen ?? false}
-            onClick={() => handleShowMore(Sections.WORK)}
-            area="work-more"
-          />
-          <ShowMoreMobileButton
-            open={findSectionState(Sections.WORK)?.isOpen ?? false}
-            onClick={() => handleShowMore(Sections.WORK)}
-            showMoreText="Show more work experience"
-            showLessText="Show less work experience"
-          />
-          <AppearContainer
-            isVisible={findSectionState(Sections.WORK)?.isOpen ?? false}
-            area="work-extra"
-          >
-            <GridAssigner area="work-extra" paddingBottom="80px">
-              {content.work.map((workPlace, index) => (
-                <Flex key={index} direction="column" gap={1} marginTop={2}>
-                  <Typography variant="label-1">{workPlace.company}</Typography>
-                  {workPlace.roles.map((role, roleIndex) => (
-                    <Role
-                      key={roleIndex}
-                      role={role.title}
-                      from={role.from}
-                      to={role.to}
-                    />
-                  ))}
-                </Flex>
-              ))}
-            </GridAssigner>
-          </AppearContainer>
-        </Fragment>
-      </Grid>
+            {workPlace.companyWeb ? (
+              <StyledLink href={workPlace.companyWeb} target="_blank">
+                <Typography variant="label-1">{workPlace.company}</Typography>
+                <ArrowTopRightIcon />
+              </StyledLink>
+            ) : (
+              <Typography variant="label-1">{workPlace.company}</Typography>
+            )}
+            {workPlace.roles.map((role, roleIndex) => (
+              <Role
+                key={roleIndex}
+                role={role.title}
+                from={role.from}
+                to={role.to}
+              />
+            ))}
+          </Flex>
+        ))}
+      </Flex>
       <Footer />
     </Container>
   );
 }
 
-const Grid = styled(motion.div)`
+const StyledLink = styled(Link)`
   ${({ theme }) => css`
-    position: relative;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: ${theme.spacing[3]};
+    align-items: center;
+    gap: ${theme.spacing[1]};
+    color: ${theme.colors.link.default};
+    text-decoration: none;
 
-    ${media.greaterThan('medium')`
-      width: fit-content;
-      display: grid;
-      grid-template-columns: var(--max-content-width-desktop) 24px;
-      grid-template-rows: auto;
-      grid-column-gap: ${theme.spacing[3]};
-      grid-template-areas:
-        'name name'
-        'description description-more'
-        'description-extra description-more'
-        'work work-more'
-        'work-extra work-extra';
-    `}
+    @media (hover: hover) {
+      &:hover {
+        color: ${theme.colors.link.hover};
+
+        p {
+          color: ${theme.colors.link.hover};
+        }
+      }
+    }
   `}
 `;
 
 const Container = styled(Flex)`
   ${({ theme }) => css`
     min-height: 100vh;
-  `}
-`;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0 ${theme.spacing[6]};
 
-const GridAssigner = styled(motion.div)<{
-  area: string;
-  paddingBottom?: string;
-}>`
-  ${({ theme, area, paddingBottom }) => css`
-    grid-area: ${area};
-    max-width: 100%;
-    padding-bottom: ${paddingBottom ? paddingBottom : 0};
+    & > * {
+      width: 100%;
+    }
   `}
 `;
 

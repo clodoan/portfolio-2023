@@ -1,10 +1,27 @@
-export const content = {
+export interface Role {
+  title: string;
+  from: string;
+  to: string;
+}
+
+export interface Work {
+  company: string;
+  companyWeb?: string;
+  description?: string;
+  roles: Role[];
+}
+
+export interface Content {
+  title: string;
+  subtitle: string;
+  about: string;
+  work: Work[];
+}
+
+export const content: Content = {
   title: 'Claudio Angrigiani',
-  about: {
-    description: 'Crafting delightful software from design to code.',
-    extra:
-      "Originally from Buenos Aires, Argentina, I am passionate about soccer, relish Argentinian 'asado', and love snowboarding. \n With a past of startup founder and design manager, I am now focused on my craft. I thrive at the intersection of engineering and design, where I can sketch in pencil, refine in Figma, and bring software to life with code.",
-  },
+  subtitle: 'Design Engineer',
+  about: 'Helping make our digital world a bit more enjoyable.',
   work: [
     {
       company: 'Footprint',
@@ -64,7 +81,6 @@ export const content = {
     {
       company: 'Masisa Lab',
       companyWeb: 'https://www.masisalab.com/en/',
-
       roles: [
         {
           title: 'Head of Accelerator Program',
@@ -75,7 +91,7 @@ export const content = {
     },
     {
       company: 'Cranio',
-      companyWeb: { undefined },
+      companyWeb: undefined,
       roles: [
         {
           title: 'Partner & Head of Product',
@@ -85,7 +101,7 @@ export const content = {
       ],
     },
     {
-      company: 'ComeCasero | A 500 Startups Portfolio Company',
+      company: 'ComeCasero | 500 Startups',
       companyWeb: 'https://www.f6s.com/company/comecasero.com#about',
       roles: [
         {
