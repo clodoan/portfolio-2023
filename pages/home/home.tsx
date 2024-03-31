@@ -3,12 +3,14 @@ import Footer from '@/components/footer';
 import Typography from '@/components/typography';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
+import Video from 'next-video';
 import Link from 'next/link';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { content } from '../../utils/content/home.content';
 import Role from './components/role';
+import getStarted from '/videos/get-started.mp4';
 
 function Home() {
   return (
@@ -21,6 +23,7 @@ function Home() {
       animate={{ opacity: 1, filter: 'blur(0px)' }}
       transition={{ duration: 1 }}
     >
+      <Video src={getStarted} />
       <Flex direction="column" marginBottom={11}>
         <Typography variant="label-2">{content.title}</Typography>
         <Typography variant="label-2" color="secondary">
