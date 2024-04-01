@@ -1,7 +1,6 @@
 import Flex from '@/components/flex';
 import Footer from '@/components/footer';
 import Typography from '@/components/typography';
-import MuxPlayer from '@mux/mux-player-react';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -22,15 +21,6 @@ function Home() {
       animate={{ opacity: 1, filter: 'blur(0px)' }}
       transition={{ duration: 1 }}
     >
-      <MuxPlayer
-        playbackId="JSDlD401H02VqW6CaL4SU5jtQ4yAHhdCmpwYMedn102sHY"
-        metadata={{
-          video_title: 'Dialog overflow',
-        }}
-        autoPlay
-        loop
-        muted
-      />
       <Flex direction="column" marginBottom={11}>
         <Typography variant="label-2">{content.title}</Typography>
         <Typography variant="label-2" color="secondary">
