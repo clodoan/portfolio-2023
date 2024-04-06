@@ -1,10 +1,34 @@
 [
   {
-    "id": "dialog_overflow",
-    "playbackId": "JSDlD401H02VqW6CaL4SU5jtQ4yAHhdCmpwYMedn102sHY"
+    "id": "home",
+    "src": "/videos/home.mp4",
+    "playbackId": "rJR8YrjDkAJf5fc4bB8xl4wrKGLXtvrTiuF1FVQ17sE",
+    "title": "Footprint Home",
+    "description": "Implementation of the Footprint home screen.",
+    "link": "https://onefootprint.com"
+  },
+  {
+    "id": "kyc",
+    "src": "/videos/kyc.mp4",
+    "playbackId": "ZqkmLCsqRXKiYCcSZRjtqX6yPQk4tT4KoGwFRSuIuPQ",
+    "title": "Footprint KYC",
+    "description": "Implementation of the Footprint KYC section.",
+    "link": "https://onefootprint.com/kyc"
   },
   {
     "id": "authentication",
-    "playbackId": "Lyr5J01F3eA77T00N94C5uQ01mkg3GF00GUSj63VBjWMiWg"
+    "src": "/videos/auth.mp4",
+    "playbackId": "Lyr5J01F3eA77T00N94C5uQ01mkg3GF00GUSj63VBjWMiWg",
+    "title": "Footprint Authentication",
+    "description": "Implementation of the Footprint authentication screen.",
+    "link": "https://onefootprint.com/auth"
+  },
+  {
+    "id": "vault",
+    "src": "/videos/vaulting.mp4",
+    "playbackId": "gKEENdRk02v6wfFOeKGYmHFk93i4eA4ekF006nEmy2KLI",
+    "title": "Footprint Vault",
+    "description": "Implementation of the Footprint vaulting section.",
+    "link": "https://onefootprint.com/vaulting"
   }
 ]
