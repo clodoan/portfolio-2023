@@ -1,34 +1,40 @@
 import { Typography } from '@/components';
 import { media } from '@/styles/media';
 import MuxPlayer from '@mux/mux-player-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import data from './craft.json';
 
+interface Video {
+  id: string;
+  playbackId: string;
+  title: string;
+  description: string;
+  link?: string;
+  blurHash?: string;
+}
+
 const Craft = () => {
+  const [videos, setVideos] = useState<Video[]>(data);
+
   return (
     <Container>
-      {data.map((item) => (
+      {videos.map((item) => (
         <VideoContainer key={item.id}>
           <CaptionContainer>
-            <Typography variant="body-2">{item.title}</Typography>
+            <Typography variant="label-2">{item.title}</Typography>
           </CaptionContainer>
           <MuxPlayer
-            key={item.id}
+            // placeholder={item.blurHash}
             playbackId={item.playbackId}
             metadata={{
-              video_title: 'Dialog overflow',
+              video_title: item.title,
             }}
             autoPlay
             loop
             muted
             playsInline
-            style={{
-              pointerEvents: 'none',
-              height: '100%',
-              width: '100%',
-            }}
           />
         </VideoContainer>
       ))}
@@ -45,9 +51,26 @@ const VideoContainer = styled.div<{ key: string; children: React.ReactNode }>`
   isolation: isolate;
 
   mux-player {
+    width: 100%;
+    height: 100%;
     --media-object-fit: cover;
     --media-object-position: center;
     --controls: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4) 0%,
+        transparent 40%,
+        transparent 100%
+      );
+    }
   }
 `;
 
@@ -58,7 +81,6 @@ const CaptionContainer = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, black 0%, transparent 100%);
     padding: ${theme.spacing[4]} ${theme.spacing[3]};
 
     p {
