@@ -1,0 +1,54 @@
+[
+  {
+    "id": "home",
+    "playbackId": "rJR8YrjDkAJf5fc4bB8xl4wrKGLXtvrTiuF1FVQ17sE",
+    "title": "Website: Footprint Home",
+    "description": "Implementation of the Footprint home screen.",
+    "link": "https://onefootprint.com"
+  },
+  {
+    "id": "kyc",
+    "playbackId": "ZqkmLCsqRXKiYCcSZRjtqX6yPQk4tT4KoGwFRSuIuPQ",
+    "title": "Website: Footprint KYC",
+    "description": "Implementation of the Footprint KYC section.",
+    "link": "https://onefootprint.com/kyc"
+  },
+  {
+    "id": "authentication",
+    "playbackId": "Lyr5J01F3eA77T00N94C5uQ01mkg3GF00GUSj63VBjWMiWg",
+    "title": "Website: Footprint Auth",
+    "description": "Implementation of the Footprint authentication screen.",
+    "link": "https://onefootprint.com/auth"
+  },
+  {
+    "id": "vault",
+    "playbackId": "gKEENdRk02v6wfFOeKGYmHFk93i4eA4ekF006nEmy2KLI",
+    "title": "Website: Footprint Vault",
+    "description": "Implementation of the Footprint vaulting section.",
+    "link": "https://onefootprint.com/vaulting"
+  },
+  {
+    "id": "user-dropdown",
+    "playbackId": "iGu2E7j4TMcB2ec01raA12xvANwHrcNhknDUBrAThi9U",
+    "title": "User Dropdown in Dashboard",
+    "description": "Implementation of the user dropdown in the Footprint dashboard."
+  },
+  {
+    "id": "frequent-notes",
+    "playbackId": "TFOPbWkyITBWW1wvGiuanKXUiirxlv0001GcyTkxuInxY",
+    "title": "Frequent Notes in Footprint Dashboard",
+    "description": "Implementation of the frequent notes in the Footprint dashboard."
+  },
+  {
+    "id": "pdf-preview",
+    "playbackId": "qF0188eYh9LmbCRBNOfnrnfaR2A01iyKvILqoXQyI3VfA",
+    "title": "PDF Preview Thumbnail with first PDF page",
+    "description": "Implementation of the PDF preview in the Footprint dashboard."
+  },
+  {
+    "id": "popover",
+    "playbackId": "9vuDXecxKdMmgRQ6D00q7FPVe00JB8lStnD3fBqCFj7Ec",
+    "title": "Popover",
+    "description": "Implementation of the popover in the Footprint dashboard."
+  }
+]
