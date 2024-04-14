@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Mulish:ital,wght@0,200;0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
           rel="stylesheet"
         />
         <link

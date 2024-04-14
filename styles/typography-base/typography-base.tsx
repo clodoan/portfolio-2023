@@ -3,6 +3,7 @@ const FACTOR = 1.25;
 const typographyBase = {
   fontFamily: {
     body: "'Mulish', 'sans-serif'",
+    serif: "'Cormorant', serif",
     heading: "'Mulish', 'sans-serif'",
   },
   fontWeight: {

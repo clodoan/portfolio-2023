@@ -16,6 +16,7 @@ type TypographyProps = {
     | 'label-3'
     | 'label-4';
   color?: 'primary' | 'secondary' | 'tertiary';
+  serif?: boolean;
   children: string | React.ReactNode;
   as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'label' | 'div' | 'li' | 'a';
 };
@@ -24,102 +25,81 @@ const Typography = ({
   children,
   variant,
   color = 'primary',
+  serif,
   as,
 }: TypographyProps) => {
   return (
-    <TypographyContainer variant={variant} color={color} as={as}>
+    <TypographyContainer variant={variant} color={color} serif={serif} as={as}>
       {children}
     </TypographyContainer>
   );
 };
 
-const handleFamily = (variant: TypographyProps['variant']) => {
-  switch (variant) {
-    case 'heading-1':
-      return typographyBase.fontFamily.heading;
-    case 'heading-2':
-      return typographyBase.fontFamily.heading;
-    case 'heading-3':
-      return typographyBase.fontFamily.heading;
-    default:
-      return typographyBase.fontFamily.body;
+const handleFamily = (variant: TypographyProps['variant'], serif?: boolean) => {
+  if (serif === true) {
+    return typographyBase.fontFamily.serif;
+  } else if (['heading-1', 'heading-2', 'heading-3'].includes(variant)) {
+    return typographyBase.fontFamily.heading;
+  } else {
+    return typographyBase.fontFamily.body;
   }
 };
 
-const handleColor = (color: TypographyProps['color'], theme: Theme) => {
-  switch (color) {
-    case 'primary':
-      return theme.colors.text.primary;
-    case 'secondary':
-      return theme.colors.text.secondary;
-    case 'tertiary':
-      return theme.colors.text.tertiary;
-    default:
-      return theme.colors.text.primary;
-  }
+const handleColor = (
+  color: TypographyProps['color'] = 'primary',
+  theme: Theme,
+) => {
+  return theme.colors.text[color] || theme.colors.text.primary;
 };
 
 const handleSize = (variant: TypographyProps['variant']) => {
-  switch (variant) {
-    case 'heading-1':
-      return typographyBase.fontSize[4];
-    case 'heading-2':
-      return typographyBase.fontSize[5];
-    case 'heading-3':
-      return typographyBase.fontSize[6];
-    case 'body-1':
-      return typographyBase.fontSize[1];
-    case 'body-2':
-      return typographyBase.fontSize[2];
-    case 'body-3':
-      return typographyBase.fontSize[3];
-    case 'label-1':
-      return typographyBase.fontSize[1];
-    case 'label-2':
-      return typographyBase.fontSize[2];
-    case 'label-3':
-      return typographyBase.fontSize[3];
-    default:
-      return typographyBase.fontSize[1];
-  }
+  const defaultSize = typographyBase.fontSize[1];
+  const sizeMap: { [key in TypographyProps['variant']]?: string } = {
+    'heading-1': typographyBase.fontSize[4],
+    'heading-2': typographyBase.fontSize[5],
+    'heading-3': typographyBase.fontSize[6],
+    'body-1': typographyBase.fontSize[1],
+    'body-2': typographyBase.fontSize[2],
+    'body-3': typographyBase.fontSize[3],
+    'label-1': typographyBase.fontSize[1],
+    'label-2': typographyBase.fontSize[2],
+    'label-3': typographyBase.fontSize[3],
+  };
+  return sizeMap[variant] || defaultSize;
 };
 
 const handleWeight = (variant: TypographyProps['variant']) => {
-  switch (variant) {
-    case 'heading-1':
-      return typographyBase.fontWeight.semibold;
-    case 'heading-2':
-      return typographyBase.fontWeight.semibold;
-    case 'heading-3':
-      return typographyBase.fontWeight.semibold;
-    case 'body-1':
-      return typographyBase.fontWeight.regular;
-    case 'body-2':
-      return typographyBase.fontWeight.regular;
-    case 'body-3':
-      return typographyBase.fontWeight.regular;
-    case 'label-1':
-      return typographyBase.fontWeight.semibold;
-    case 'label-2':
-      return typographyBase.fontWeight.semibold;
-    case 'label-3':
-      return typographyBase.fontWeight.semibold;
-    default:
-      return typographyBase.fontWeight.regular;
+  if (
+    [
+      'heading-1',
+      'heading-2',
+      'heading-3',
+      'label-1',
+      'label-2',
+      'label-3',
+    ].includes(variant)
+  ) {
+    return typographyBase.fontWeight.semibold;
   }
+  return typographyBase.fontWeight.regular;
 };
 
-const TypographyContainer = styled.p<{
+// @ts-ignore
+const TypographyContainer = styled('p').attrs(({ as }) => ({
+  as,
+}))<{
   variant: TypographyProps['variant'];
   color: TypographyProps['color'];
+  serif?: boolean;
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
 }>`
-  ${({ variant, color, theme }) => css`
-      font-family: ${handleFamily(variant)}};
-      font-size: ${handleSize(variant)};
-      color: ${handleColor(color, theme)};
-      font-weight: ${handleWeight(variant)};
-      line-height: 1.5;
+  ${({ variant, color, serif, theme }) => css`
+    font-family: ${handleFamily(variant, serif)};
+    font-size: ${handleSize(variant)};
+    color: ${handleColor(color, theme)};
+    font-weight: ${serif ? 700 : handleWeight(variant)};
+    font-style: ${serif ? 'italic' : undefined};
+    line-height: 1.5;
   `}
 `;
-
 export default Typography;

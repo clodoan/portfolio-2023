@@ -21,14 +21,21 @@ function Home() {
       animate={{ opacity: 1, filter: 'blur(0px)' }}
       transition={{ duration: 1 }}
     >
-      <Flex direction="column" marginBottom={11}>
-        <Typography variant="label-2">{content.title}</Typography>
-        <Typography variant="label-2" color="secondary">
-          {content.work[0].roles[0].title}
+      <Flex
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        marginBottom={11}
+      >
+        <Typography variant="label-2" as="h1">
+          {content.title}
+        </Typography>
+        <Typography variant="label-3" as="h2" color="tertiary" serif>
+          {content.subtitle}
         </Typography>
       </Flex>
       <Flex marginBottom={11}>
-        <Typography variant="body-2" color="secondary">
+        <Typography variant="body-1" color="secondary">
           {content.about}
         </Typography>
       </Flex>

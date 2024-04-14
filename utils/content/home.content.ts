@@ -20,8 +20,8 @@ export interface Content {
 
 export const content: Content = {
   title: 'Claudio Angrigiani',
-  subtitle: 'Design Engineer',
-  about: 'Helping make our digital world a bit more enjoyable.',
+  subtitle: 'Design & Engineering',
+  about: 'Crafting digital products with love and care.',
   work: [
     {
       company: 'Footprint',

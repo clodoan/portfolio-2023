@@ -11,14 +11,12 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         padding: 0;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
-        font-smooth: always;
         -moz-osx-font-smoothing: grayscale;
       }
       html {
         font-size: 16px;
         color: ${theme.colors.text.primary};
         background-color: ${theme.colors.background.primary};
-        font-family: ${theme.typography.fontFamily.body};
         white-space: pre-line;
         -webkit-text-size-adjust: 100%;
       }
@@ -29,7 +27,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         min-height: 100vh;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
-        font-smooth: always;
         -moz-osx-font-smoothing: grayscale;
         background-image: url('/background.svg'),
           linear-gradient(
