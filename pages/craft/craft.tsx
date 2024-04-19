@@ -1,7 +1,9 @@
-import { Typography } from '@/components';
+import { Layout, Typography } from '@/components';
+import appearVariants from '@/components/appear-variants';
 import { media } from '@/styles/media';
 import MuxPlayer from '@mux/mux-player-react';
-import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import data from './craft.json';
@@ -12,47 +14,72 @@ interface Video {
   title: string;
   description: string;
   link?: string;
-  blurHash?: string;
 }
 
 const Craft = () => {
   const [videos, setVideos] = useState<Video[]>(data);
 
   return (
-    <Container>
-      {videos.map((item) => (
-        <VideoContainer key={item.id}>
-          <CaptionContainer>
-            <Typography variant="label-2">{item.title}</Typography>
-          </CaptionContainer>
-          <MuxPlayer
-            // placeholder={item.blurHash}
-            playbackId={item.playbackId}
-            metadata={{
-              video_title: item.title,
-            }}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        </VideoContainer>
-      ))}
-    </Container>
+    <Layout>
+      <Container
+        variants={appearVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        {videos.map((item) => (
+          <VideoContainer key={item.id}>
+            <CaptionContainer>
+              <Typography variant="label-2">{item.title}</Typography>
+            </CaptionContainer>
+            <MuxPlayer
+              playbackId={item.playbackId}
+              metadata={{
+                video_title: item.title,
+              }}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </VideoContainer>
+        ))}
+      </Container>
+    </Layout>
   );
 };
 
+const Container = styled(motion.div)`
+  ${({ theme }) => css`
+    display: grid;
+    grid-gap: ${theme.spacing[2]};
+    padding: ${theme.spacing[2]};
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+
+    @media (${media.desktop}) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(auto, 300px);
+    }
+
+    @media (${media.desktopL}) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  `}
+`;
+
 const VideoContainer = styled.div<{ key: string; children: React.ReactNode }>`
   border-radius: 8px;
-  width: fit-content;
-  height: auto;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   position: relative;
   isolation: isolate;
 
   mux-player {
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
     --media-object-fit: cover;
     --media-object-position: center;
     --controls: none;
@@ -85,24 +112,6 @@ const CaptionContainer = styled.div`
 
     p {
       color: #fff;
-    }
-  `}
-`;
-
-const Container = styled.div`
-  ${({ theme }) => css`
-    display: grid;
-    grid-gap: ${theme.spacing[2]};
-    padding: ${theme.spacing[2]};
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: masonry;
-
-    @media (${media.desktop}) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (${media.desktopL}) {
-      grid-template-columns: repeat(3, 1fr);
     }
   `}
 `;

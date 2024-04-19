@@ -1,7 +1,17 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const Layout = styled.main`
+import Navigation from '../navigation';
+
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <>
+      <Main>{children}</Main>
+      <Navigation />
+    </>
+  );
+};
+const Main = styled.main`
   position: relative;
 `;
 

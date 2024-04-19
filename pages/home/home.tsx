@@ -1,3 +1,5 @@
+import { Layout } from '@/components';
+import appearVariants from '@/components/appear-variants';
 import Flex from '@/components/flex';
 import Footer from '@/components/footer';
 import Typography from '@/components/typography';
@@ -12,63 +14,66 @@ import Role from './components/role';
 
 function Home() {
   return (
-    <Container
-      alignItems="center"
-      justifyContent="center"
-      overflow="hidden"
-      direction="column"
-      initial={{ opacity: 0, filter: 'blur(10px)' }}
-      animate={{ opacity: 1, filter: 'blur(0px)' }}
-      transition={{ duration: 1 }}
-    >
-      <Flex
-        direction="row"
-        justifyContent="space-between"
+    <Layout>
+      <Container
         alignItems="center"
-        marginBottom={11}
+        justifyContent="center"
+        overflow="hidden"
+        direction="column"
+        variants={appearVariants}
+        initial="initial"
+        animate="animate"
+        transition={{ duration: 1 }}
       >
-        <Typography variant="label-2" as="h1">
-          {content.title}
-        </Typography>
-        <Typography variant="label-3" as="h2" color="tertiary" serif>
-          {content.subtitle}
-        </Typography>
-      </Flex>
-      <Flex marginBottom={11}>
-        <Typography variant="body-1" color="secondary">
-          {content.about}
-        </Typography>
-      </Flex>
-      <Flex gap={2} direction="column" width="100%" marginBottom={11}>
-        {content.work.map((workPlace, index) => (
-          <Flex
-            key={index}
-            direction="column"
-            gap={1}
-            marginTop={2}
-            width="100%"
-          >
-            {workPlace.companyWeb ? (
-              <StyledLink href={workPlace.companyWeb} target="_blank">
+        <Flex
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          marginBottom={11}
+        >
+          <Typography variant="label-2" as="h1">
+            {content.title}
+          </Typography>
+          <Typography variant="label-3" as="h2" color="tertiary" serif>
+            {content.subtitle}
+          </Typography>
+        </Flex>
+        <Flex marginBottom={11}>
+          <Typography variant="body-1" color="secondary">
+            {content.about}
+          </Typography>
+        </Flex>
+        <Flex gap={2} direction="column" width="100%" marginBottom={11}>
+          {content.work.map((workPlace, index) => (
+            <Flex
+              key={index}
+              direction="column"
+              gap={1}
+              marginTop={2}
+              width="100%"
+            >
+              {workPlace.companyWeb ? (
+                <StyledLink href={workPlace.companyWeb} target="_blank">
+                  <Typography variant="label-1">{workPlace.company}</Typography>
+                  <ArrowTopRightIcon />
+                </StyledLink>
+              ) : (
                 <Typography variant="label-1">{workPlace.company}</Typography>
-                <ArrowTopRightIcon />
-              </StyledLink>
-            ) : (
-              <Typography variant="label-1">{workPlace.company}</Typography>
-            )}
-            {workPlace.roles.map((role, roleIndex) => (
-              <Role
-                key={roleIndex}
-                role={role.title}
-                from={role.from}
-                to={role.to}
-              />
-            ))}
-          </Flex>
-        ))}
-      </Flex>
-      <Footer />
-    </Container>
+              )}
+              {workPlace.roles.map((role, roleIndex) => (
+                <Role
+                  key={roleIndex}
+                  role={role.title}
+                  from={role.from}
+                  to={role.to}
+                />
+              ))}
+            </Flex>
+          ))}
+        </Flex>
+        <Footer />
+      </Container>
+    </Layout>
   );
 }
 
