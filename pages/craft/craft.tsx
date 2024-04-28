@@ -29,6 +29,9 @@ const Craft = () => {
         initial="initial"
         animate="animate"
         exit="exit"
+        transition={{
+          duration: 1,
+        }}
       >
         {videos.map((item) => (
           <VideoContainer key={item.id}>
@@ -76,7 +79,9 @@ const Container = styled(motion.div)`
   `}
 `;
 
-const VideoContainer = styled.div<{ key: string; children: React.ReactNode }>`
+const VideoContainer = styled.div<{
+  children: React.ReactNode;
+}>`
   position: relative;
   isolation: isolate;
   border-radius: 6px;
