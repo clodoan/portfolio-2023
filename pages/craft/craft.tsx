@@ -8,6 +8,9 @@ import styled, { css } from 'styled-components';
 
 import data from './craft.json';
 
+const VIDEO_WIDTH = 400;
+const VIDEO_HEIGHT = 225;
+
 interface Video {
   id: string;
   playbackId: string;
@@ -52,14 +55,19 @@ const Craft = () => {
 const Container = styled(motion.div)`
   ${({ theme }) => css`
     display: grid;
+    max-width: 100%;
     grid-gap: ${theme.spacing[2]};
     padding: ${theme.spacing[2]};
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(auto, 1fr);
+    grid-template-rows: repeat(auto-fill, minmax(${VIDEO_HEIGHT}px, auto));
+
+    @media (${media.mobile}) {
+      grid-template-columns: repeat(2, minmax(0, ${VIDEO_WIDTH}px));
+    }
 
     @media (${media.desktop}) {
+      margin: auto;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(auto, 300px);
     }
 
     @media (${media.desktopL}) {
@@ -69,17 +77,15 @@ const Container = styled(motion.div)`
 `;
 
 const VideoContainer = styled.div<{ key: string; children: React.ReactNode }>`
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   position: relative;
   isolation: isolate;
+  border-radius: 6px;
+  overflow: hidden;
 
   mux-player {
-    min-width: 100%;
-    min-height: 100%;
     overflow: hidden;
+    aspect-ratio: 16 / 9;
+    min-height: 100%;
     --media-object-fit: cover;
     --media-object-position: center;
     --controls: none;

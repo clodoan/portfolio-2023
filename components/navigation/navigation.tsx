@@ -19,39 +19,47 @@ const navigationLinks: NavigationElement[] = [
 const Navigation = () => {
   return (
     <NavigationContainer defaultValue="/" orientation="horizontal">
-      <ListContainer>
+      <List>
         {navigationLinks.map(({ path, label }) => (
-          <NavigationMenu.Item key={path} asChild>
+          <StyledItem key={path}>
             <NavigationMenu.Link asChild>
-              <StyledLink href={path}>
-                <Typography variant="body-1">{label}</Typography>
-              </StyledLink>
+              <StyledLink href={path}>{label}</StyledLink>
             </NavigationMenu.Link>
-          </NavigationMenu.Item>
+          </StyledItem>
         ))}
-      </ListContainer>
+      </List>
     </NavigationContainer>
   );
 };
 
+const StyledItem = styled(NavigationMenu.Item)`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: row;
+    gap: ${theme.spacing[3]};
+    text-decoration: none;
+  `}
+`;
+
 const NavigationContainer = styled(NavigationMenu.Root)`
   ${({ theme }) => css`
     position: fixed;
-    bottom: ${theme.spacing[1]};
     left: 50%;
+    bottom: ${theme.spacing[4]};
     transform: translateX(-50%);
     z-index: 100;
   `}
 `;
 
-const ListContainer = styled(NavigationMenu.List)`
+const List = styled(NavigationMenu.List)`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
     gap: ${theme.spacing[3]};
     padding: ${theme.spacing[2]} ${theme.spacing[3]};
-    background-color: ${theme.colors.background.primary};
-    border-radius: ${theme.border.radius.medium};
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: ${theme.border.radius.full};
   `}
 `;
 
@@ -59,7 +67,9 @@ const StyledLink = styled(Link)`
   ${({ theme }) => css`
     display: flex;
     padding: ${theme.spacing[1]};
-    color: ${theme.colors.text.secondary};
+    color: ${theme.colors.text.tertiary};
+    font-family: ${theme.typography.fontFamily.body};
+    font-size: ${theme.typography.fontSize[2]};
   `}
 `;
 
