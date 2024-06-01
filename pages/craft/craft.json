@@ -3,52 +3,64 @@
     "id": "home",
     "playbackId": "rJR8YrjDkAJf5fc4bB8xl4wrKGLXtvrTiuF1FVQ17sE",
     "title": "Website: Footprint Home",
-    "description": "Implementation of the Footprint home screen.",
+    "date": "2023-01-09",
+    "description": "Design and code of the Footprint home screen.",
+    "collaborators": [{ "name": "Pedro Marques", "role": "Design" }],
     "link": "https://onefootprint.com"
   },
   {
     "id": "kyc",
     "playbackId": "ZqkmLCsqRXKiYCcSZRjtqX6yPQk4tT4KoGwFRSuIuPQ",
     "title": "Website: Footprint KYC",
-    "description": "Implementation of the Footprint KYC section.",
+    "date": "2023-01-09",
+    "description": "Design and code of the Footprint KYC section.",
+    "collaborators": [{ "name": "Pedro Marques", "role": "Design" }],
     "link": "https://onefootprint.com/kyc"
   },
   {
     "id": "authentication",
     "playbackId": "Lyr5J01F3eA77T00N94C5uQ01mkg3GF00GUSj63VBjWMiWg",
+    "date": "2023-01-09",
     "title": "Website: Footprint Auth",
     "description": "Implementation of the Footprint authentication screen.",
+    "collaborators": [{ "name": "Pedro Marques", "role": "Code" }],
     "link": "https://onefootprint.com/auth"
   },
   {
     "id": "vault",
     "playbackId": "gKEENdRk02v6wfFOeKGYmHFk93i4eA4ekF006nEmy2KLI",
+    "date": "2023-01-09",
     "title": "Website: Footprint Vault",
     "description": "Implementation of the Footprint vaulting section.",
+    "collaborators": [{ "name": "Pedro Marques", "role": "Code" }],
     "link": "https://onefootprint.com/vaulting"
   },
   {
     "id": "user-dropdown",
     "playbackId": "iGu2E7j4TMcB2ec01raA12xvANwHrcNhknDUBrAThi9U",
+    "date": "2024-01-01",
     "title": "User Dropdown in Dashboard",
     "description": "Implementation of the user dropdown in the Footprint dashboard."
   },
   {
     "id": "frequent-notes",
     "playbackId": "TFOPbWkyITBWW1wvGiuanKXUiirxlv0001GcyTkxuInxY",
+    "date": "2023-11-01",
     "title": "Frequent Notes in Footprint Dashboard",
-    "description": "Implementation of the frequent notes in the Footprint dashboard."
+    "description": "Designed and implemented frequent notes feature in the Footprint dashboard to allow users to save and quickly access common notes when reviewing vaults. "
   },
   {
     "id": "pdf-preview",
     "playbackId": "qF0188eYh9LmbCRBNOfnrnfaR2A01iyKvILqoXQyI3VfA",
+    "date": "2024-02-01",
     "title": "PDF Preview Thumbnail with first PDF page",
-    "description": "Implementation of the PDF preview in the Footprint dashboard."
+    "description": "Designed and implemented a PDF preview thumbnail with a miniature of the first page of the real PDF that would open in a full-screen viewer when clicked."
   },
   {
     "id": "popover",
     "playbackId": "9vuDXecxKdMmgRQ6D00q7FPVe00JB8lStnD3fBqCFj7Ec",
+    "date": "2024-02-01",
     "title": "Popover",
-    "description": "Implementation of the popover in the Footprint dashboard."
+    "description": "Just a simple popover component."
   }
 ]
