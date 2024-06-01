@@ -49,12 +49,6 @@ const Craft = () => {
 
   return (
     <Container>
-      <Title direction="column" gap={2} width="100%" maxWidth="720px">
-        <Typography variant="heading-2">Scraps</Typography>
-        <Typography variant="body-3" color="secondary">
-          A pretty random collection of work from the crafting process.
-        </Typography>
-      </Title>
       {groupedByMonth.map((group) => (
         <Flex key={format(group.date, 'yyyy-MM')} direction="row" gap={5}>
           <Date>
@@ -65,10 +59,10 @@ const Craft = () => {
           <Flex direction="column" gap={5}>
             {group.videos.map((item) => (
               <Flex key={item.id} direction="column" gap={5}>
-                <Flex direction="column" gap={1}>
+                <ProjectTitle direction="column" gap={1}>
                   <Typography variant="label-2">{item.title}</Typography>
                   <Typography variant="body-2">{item.description}</Typography>
-                </Flex>
+                </ProjectTitle>
                 <VideoContainer>
                   <MuxPlayer
                     playbackId={item.playbackId}
@@ -90,9 +84,8 @@ const Craft = () => {
   );
 };
 
-const Title = styled(Flex)`
-  text-align: center;
-  align-items: center;
+const ProjectTitle = styled(Flex)`
+  min-width: 100%;
 `;
 
 const Date = styled(Flex)`
